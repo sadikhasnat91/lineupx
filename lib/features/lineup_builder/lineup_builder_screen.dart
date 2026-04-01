@@ -1,0 +1,589 @@
+import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
+import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:screenshot/screenshot.dart';
+import 'package:share_plus/share_plus.dart';
+import 'dart:io' if (dart.library.html) 'dart:io';
+import 'dart:typed_data';
+import '../../core/constants/app_colors.dart';
+import '../../core/utils/helpers.dart';
+import '../../data/models/player_model.dart';
+import '../../routes/app_routes.dart';
+import '../../widgets/gradient_app_bar.dart';
+import '../player_selection/player_selection_sheet.dart';
+import 'lineup_controller.dart';
+import 'widgets/pitch_painter.dart';
+import 'widgets/player_slot_widget.dart';
+
+class LineupBuilderScreen extends StatelessWidget {
+  const LineupBuilderScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final controller = Get.find<LineupController>();
+    final screenshotController = ScreenshotController();
+
+    return Scaffold(
+      backgroundColor: AppColors.bgDeep,
+      appBar: GradientAppBar(
+        title: controller.lineup.teamSettings.teamName,
+        actions: [
+          // Customize team
+          IconButton(
+            icon: const Icon(Icons.tune_rounded,
+                color: AppColors.textSecondary, size: 20),
+            onPressed: () => Get.toNamed(AppRoutes.teamCustomization,
+                arguments: {'controller': controller}),
+          ),
+          // Export
+          IconButton(
+            icon: const Icon(Icons.ios_share_rounded,
+                color: AppColors.textSecondary, size: 20),
+            onPressed: () => _export(screenshotController),
+          ),
+        ],
+      ),
+      body: Column(
+        children: [
+          // ── Stats bar ──────────────────────────────────────────────────
+          _StatsBar(controller: controller),
+
+          // ── Pitch + player slots ───────────────────────────────────────
+          Expanded(
+            child: Screenshot(
+              controller: screenshotController,
+              child: _PitchArea(controller: controller),
+            ),
+          ),
+
+          // ── Bench ──────────────────────────────────────────────────────
+          _BenchSection(controller: controller),
+
+          // ── Bottom actions ─────────────────────────────────────────────
+          _BottomBar(controller: controller),
+        ],
+      ),
+    );
+  }
+
+  Future<void> _export(ScreenshotController sc) async {
+    try {
+      final Uint8List? bytes = await sc.capture(pixelRatio: 2.5);
+      if (bytes == null) return;
+
+      if (kIsWeb) {
+        // On web, use in-memory XFile (share_plus handles web download fallback)
+        await Share.shareXFiles(
+          [XFile.fromData(bytes, name: 'lineupx_export.png', mimeType: 'image/png')],
+          text: 'Built with LineupX – Dream XI Builder',
+        );
+      } else {
+        final dir = Directory.systemTemp;
+        final file =
+            await File('${dir.path}/lineupx_export.png').writeAsBytes(bytes);
+        await Share.shareXFiles(
+          [XFile(file.path, mimeType: 'image/png')],
+          text: 'Built with LineupX – Dream XI Builder',
+        );
+      }
+    } catch (e) {
+      Get.snackbar('Export failed', e.toString(),
+          backgroundColor: AppColors.bgCard,
+          colorText: AppColors.textPrimary);
+    }
+  }
+}
+
+// ── Stats bar ─────────────────────────────────────────────────────────────────
+
+class _StatsBar extends StatelessWidget {
+  final LineupController controller;
+  const _StatsBar({required this.controller});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: AppColors.bgDark,
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+      child: Obx(() => Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              _StatChip(
+                label:
+                    '${controller.filledCount}/${controller.lineup.formation.positions.length}',
+                sublabel: 'Players',
+                color: AppColors.accentGreen,
+              ),
+              _StatChip(
+                label: controller.avgRating > 0
+                    ? controller.avgRating.toStringAsFixed(1)
+                    : '–',
+                sublabel: 'Avg OVR',
+                color: AppHelpers.ratingColor(
+                    controller.avgRating.toInt()),
+              ),
+              _StatChip(
+                label: '${controller.chemistry}%',
+                sublabel: 'Chemistry',
+                color: controller.chemistry >= 80
+                    ? AppColors.success
+                    : AppColors.warning,
+              ),
+              Text(
+                controller.lineup.formation.name,
+                style: GoogleFonts.rajdhani(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w800,
+                  color: AppColors.accentGreen,
+                ),
+              ),
+            ],
+          )),
+    );
+  }
+}
+
+class _StatChip extends StatelessWidget {
+  final String label;
+  final String sublabel;
+  final Color color;
+  const _StatChip(
+      {required this.label,
+      required this.sublabel,
+      required this.color});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Text(label,
+            style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w800,
+                color: color)),
+        Text(sublabel,
+            style: const TextStyle(
+                fontSize: 10, color: AppColors.textMuted)),
+      ],
+    );
+  }
+}
+
+// ── Pitch area ────────────────────────────────────────────────────────────────
+
+class _PitchArea extends StatelessWidget {
+  final LineupController controller;
+  const _PitchArea({required this.controller});
+
+  @override
+  Widget build(BuildContext context) {
+    return LayoutBuilder(builder: (context, constraints) {
+      final pitchW = constraints.maxWidth;
+      final pitchH = constraints.maxHeight;
+
+      return Stack(
+        children: [
+          // Pitch painter
+          Positioned.fill(
+            child: CustomPaint(painter: const PitchPainter()),
+          ),
+
+          // Player slots
+          ...controller.lineup.formation.positions
+              .map((pos) => Obx(() {
+                    final player =
+                        controller.slots[pos.id]?.value;
+                    final isCaptain =
+                        player != null &&
+                            controller.captainId.value ==
+                                player.id;
+                    final isVC =
+                        player != null &&
+                            controller.viceCaptainId.value ==
+                                player.id;
+
+                    final slotW = 64.0;
+                    final slotH = player != null ? 80.0 : 68.0;
+                    final left =
+                        pos.dx * pitchW - slotW / 2;
+                    final top =
+                        pos.dy * pitchH - slotH / 2;
+
+                    return Positioned(
+                      left: left.clamp(0, pitchW - slotW),
+                      top: top.clamp(0, pitchH - slotH),
+                      child: PlayerSlotWidget(
+                        positionId: pos.id,
+                        positionLabel: pos.label,
+                        player: player,
+                        isCaptain: isCaptain,
+                        isViceCaptain: isVC,
+                        onTap: () => _openPlayerSelection(
+                            context, controller, pos.id, pos.label),
+                        onLongPress: player != null
+                            ? () => _showSlotOptions(
+                                context, controller, pos.id, player)
+                            : null,
+                      ),
+                    );
+                  })),
+        ],
+      );
+    });
+  }
+
+  void _openPlayerSelection(
+    BuildContext context,
+    LineupController controller,
+    String positionId,
+    String positionLabel,
+  ) {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      builder: (_) => PlayerSelectionSheet(
+        positionLabel: positionLabel,
+        onPlayerSelected: (player) {
+          controller.assignPlayer(positionId, player);
+          Navigator.pop(context);
+        },
+      ),
+    );
+  }
+
+  void _showSlotOptions(
+    BuildContext context,
+    LineupController controller,
+    String positionId,
+    PlayerModel player,
+  ) {
+    final isCaptain = controller.captainId.value == player.id;
+    final isVC = controller.viceCaptainId.value == player.id;
+
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: AppColors.bgCard,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+      ),
+      builder: (_) => Padding(
+        padding: const EdgeInsets.fromLTRB(20, 16, 20, 32),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            // Handle
+            Container(
+              width: 36,
+              height: 4,
+              decoration: BoxDecoration(
+                color: AppColors.border,
+                borderRadius: BorderRadius.circular(2),
+              ),
+            ),
+            const SizedBox(height: 16),
+
+            // Player name
+            Text(
+              player.name,
+              style: GoogleFonts.rajdhani(
+                fontSize: 20,
+                fontWeight: FontWeight.w700,
+                color: AppColors.textPrimary,
+              ),
+            ),
+            const SizedBox(height: 4),
+            Text(
+              '${player.club} · ${player.country}',
+              style: const TextStyle(
+                  fontSize: 12, color: AppColors.textMuted),
+            ),
+            const SizedBox(height: 20),
+
+            _OptionRow(
+              icon: Icons.star_rounded,
+              label: isCaptain ? 'Remove Captain' : 'Set as Captain',
+              color: AppColors.accentGold,
+              onTap: () {
+                controller.setCaptain(player.id);
+                Navigator.pop(context);
+              },
+            ),
+            _OptionRow(
+              icon: Icons.star_half_rounded,
+              label:
+                  isVC ? 'Remove Vice Captain' : 'Set as Vice Captain',
+              color: AppColors.viceCaptainSilver,
+              onTap: () {
+                controller.setViceCaptain(player.id);
+                Navigator.pop(context);
+              },
+            ),
+            _OptionRow(
+              icon: Icons.swap_horiz_rounded,
+              label: 'Change Player',
+              color: AppColors.accentBlue,
+              onTap: () {
+                Navigator.pop(context);
+                _openPlayerSelection(context, controller, positionId,
+                    player.primaryPosition);
+              },
+            ),
+            _OptionRow(
+              icon: Icons.person_add_alt_1_rounded,
+              label: 'Move to Bench',
+              color: AppColors.accentGreen,
+              onTap: () {
+                controller.addBenchPlayer(player);
+                controller.clearSlot(positionId);
+                Navigator.pop(context);
+              },
+            ),
+            _OptionRow(
+              icon: Icons.person_remove_outlined,
+              label: 'Remove from Lineup',
+              color: AppColors.error,
+              onTap: () {
+                controller.clearSlot(positionId);
+                Navigator.pop(context);
+              },
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _OptionRow extends StatelessWidget {
+  final IconData icon;
+  final String label;
+  final Color color;
+  final VoidCallback onTap;
+
+  const _OptionRow(
+      {required this.icon,
+      required this.label,
+      required this.color,
+      required this.onTap});
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      leading: Container(
+        width: 36,
+        height: 36,
+        decoration: BoxDecoration(
+          color: color.withOpacity(0.12),
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: Icon(icon, color: color, size: 18),
+      ),
+      title: Text(label,
+          style: const TextStyle(
+              color: AppColors.textPrimary, fontSize: 14)),
+      onTap: onTap,
+      dense: true,
+      contentPadding: EdgeInsets.zero,
+    );
+  }
+}
+
+// ── Bench section ─────────────────────────────────────────────────────────────
+
+class _BenchSection extends StatelessWidget {
+  final LineupController controller;
+  const _BenchSection({required this.controller});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: const BoxDecoration(
+        color: AppColors.bgDark,
+        border: Border(
+          top: BorderSide(color: AppColors.border, width: 1),
+        ),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding:
+                const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+            child: Row(
+              children: [
+                Text(
+                  'BENCH',
+                  style: GoogleFonts.inter(
+                    fontSize: 10,
+                    fontWeight: FontWeight.w700,
+                    color: AppColors.textMuted,
+                    letterSpacing: 2,
+                  ),
+                ),
+                const Spacer(),
+                Obx(() => Text(
+                      '${controller.bench.length}/7',
+                      style: const TextStyle(
+                          fontSize: 10, color: AppColors.textMuted),
+                    )),
+              ],
+            ),
+          ),
+          SizedBox(
+            height: 68,
+            child: Obx(
+              () => ListView(
+                scrollDirection: Axis.horizontal,
+                padding: const EdgeInsets.fromLTRB(12, 0, 12, 8),
+                children: [
+                  // Add bench player
+                  GestureDetector(
+                    onTap: () => _openBenchSelection(context),
+                    child: Container(
+                      width: 50,
+                      height: 50,
+                      margin:
+                          const EdgeInsets.symmetric(horizontal: 4),
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: AppColors.bgCard,
+                        border: Border.all(
+                          color: AppColors.accentGreen.withOpacity(0.4),
+                          width: 1.5,
+                          style: BorderStyle.solid,
+                        ),
+                      ),
+                      child: const Icon(Icons.add_rounded,
+                          color: AppColors.accentGreen, size: 20),
+                    ),
+                  ),
+
+                  // Bench players
+                  ...controller.bench.map((player) => GestureDetector(
+                        onLongPress: () =>
+                            controller.removeBenchPlayer(player),
+                        child: _BenchPlayerChip(player: player),
+                      )),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  void _openBenchSelection(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      builder: (_) => PlayerSelectionSheet(
+        positionLabel: 'ALL',
+        onPlayerSelected: (player) {
+          controller.addBenchPlayer(player);
+          Navigator.pop(context);
+        },
+      ),
+    );
+  }
+}
+
+class _BenchPlayerChip extends StatelessWidget {
+  final PlayerModel player;
+  const _BenchPlayerChip({required this.player});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 50,
+      height: 50,
+      margin: const EdgeInsets.symmetric(horizontal: 4),
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        color: AppHelpers.avatarBgColor(player.rating),
+        border: Border.all(
+          color:
+              AppHelpers.ratingColor(player.rating).withOpacity(0.5),
+          width: 1.5,
+        ),
+      ),
+      alignment: Alignment.center,
+      child: Text(
+        AppHelpers.initials(player.name),
+        style: TextStyle(
+          fontSize: 12,
+          fontWeight: FontWeight.w800,
+          color: AppHelpers.ratingColor(player.rating),
+        ),
+      ),
+    );
+  }
+}
+
+// ── Bottom action bar ─────────────────────────────────────────────────────────
+
+class _BottomBar extends StatelessWidget {
+  final LineupController controller;
+  const _BottomBar({required this.controller});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.fromLTRB(16, 8, 16, 20),
+      decoration: const BoxDecoration(
+        color: AppColors.bgDark,
+        border: Border(top: BorderSide(color: AppColors.border)),
+      ),
+      child: Row(
+        children: [
+          Expanded(
+            child: OutlinedButton.icon(
+              onPressed: () => Get.back(),
+              icon: const Icon(Icons.arrow_back_rounded, size: 16),
+              label: const Text('Back'),
+              style: OutlinedButton.styleFrom(
+                foregroundColor: AppColors.textSecondary,
+                side: const BorderSide(color: AppColors.border),
+                padding: const EdgeInsets.symmetric(vertical: 13),
+              ),
+            ),
+          ),
+          const SizedBox(width: 12),
+          Expanded(
+            flex: 2,
+            child: Obx(() => ElevatedButton.icon(
+                  onPressed: controller.isSaving.value
+                      ? null
+                      : controller.save,
+                  icon: controller.isSaving.value
+                      ? const SizedBox(
+                          width: 16,
+                          height: 16,
+                          child: CircularProgressIndicator(
+                              strokeWidth: 2,
+                              color: Colors.black87),
+                        )
+                      : const Icon(Icons.save_rounded, size: 16),
+                  label: Text(
+                    controller.isSaving.value
+                        ? 'Saving...'
+                        : 'Save Lineup',
+                  ),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: AppColors.accentGreen,
+                    foregroundColor: Colors.black87,
+                    padding: const EdgeInsets.symmetric(vertical: 13),
+                    textStyle: const TextStyle(fontWeight: FontWeight.w700),
+                  ),
+                )),
+          ),
+        ],
+      ),
+    );
+  }
+}

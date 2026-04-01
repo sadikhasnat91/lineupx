@@ -1,0 +1,573 @@
+﻿{
+    "players":  [
+                    {
+                        "id":  "p001",
+                        "name":  "Lionel Messi",
+                        "club":  "Inter Miami",
+                        "country":  "Argentina",
+                        "imageUrl":  "https://i.pravatar.cc/200?u=p001",
+                        "number":  10,
+                        "positions":  [
+                                          "CAM",
+                                          "RW",
+                                          "ST"
+                                      ],
+                        "rating":  91,
+                        "age":  36,
+                        "preferredFoot":  "Left"
+                    },
+                    {
+                        "id":  "p002",
+                        "name":  "Cristiano Ronaldo",
+                        "club":  "Al Nassr",
+                        "country":  "Portugal",
+                        "imageUrl":  "https://i.pravatar.cc/200?u=p002",
+                        "number":  7,
+                        "positions":  [
+                                          "ST",
+                                          "LW"
+                                      ],
+                        "rating":  88,
+                        "age":  39,
+                        "preferredFoot":  "Right"
+                    },
+                    {
+                        "id":  "p003",
+                        "name":  "Kylian MbappÃ©",
+                        "club":  "Real Madrid",
+                        "country":  "France",
+                        "imageUrl":  "https://i.pravatar.cc/200?u=p003",
+                        "number":  9,
+                        "positions":  [
+                                          "ST",
+                                          "LW",
+                                          "CF"
+                                      ],
+                        "rating":  93,
+                        "age":  25,
+                        "preferredFoot":  "Right"
+                    },
+                    {
+                        "id":  "p004",
+                        "name":  "Erling Haaland",
+                        "club":  "Manchester City",
+                        "country":  "Norway",
+                        "imageUrl":  "https://i.pravatar.cc/200?u=p004",
+                        "number":  9,
+                        "positions":  [
+                                          "ST"
+                                      ],
+                        "rating":  92,
+                        "age":  23,
+                        "preferredFoot":  "Left"
+                    },
+                    {
+                        "id":  "p005",
+                        "name":  "Jude Bellingham",
+                        "club":  "Real Madrid",
+                        "country":  "England",
+                        "imageUrl":  "https://i.pravatar.cc/200?u=p005",
+                        "number":  5,
+                        "positions":  [
+                                          "CAM",
+                                          "CM"
+                                      ],
+                        "rating":  90,
+                        "age":  20,
+                        "preferredFoot":  "Right"
+                    },
+                    {
+                        "id":  "p006",
+                        "name":  "Vinicius Jr",
+                        "club":  "Real Madrid",
+                        "country":  "Brazil",
+                        "imageUrl":  "https://i.pravatar.cc/200?u=p006",
+                        "number":  7,
+                        "positions":  [
+                                          "LW",
+                                          "ST"
+                                      ],
+                        "rating":  90,
+                        "age":  23,
+                        "preferredFoot":  "Right"
+                    },
+                    {
+                        "id":  "p007",
+                        "name":  "Rodri",
+                        "club":  "Manchester City",
+                        "country":  "Spain",
+                        "imageUrl":  "https://i.pravatar.cc/200?u=p007",
+                        "number":  16,
+                        "positions":  [
+                                          "CDM",
+                                          "CM"
+                                      ],
+                        "rating":  91,
+                        "age":  27,
+                        "preferredFoot":  "Right"
+                    },
+                    {
+                        "id":  "p008",
+                        "name":  "Thibaut Courtois",
+                        "club":  "Real Madrid",
+                        "country":  "Belgium",
+                        "imageUrl":  "https://i.pravatar.cc/200?u=p008",
+                        "number":  1,
+                        "positions":  [
+                                          "GK"
+                                      ],
+                        "rating":  91,
+                        "age":  31,
+                        "preferredFoot":  "Right"
+                    },
+                    {
+                        "id":  "p009",
+                        "name":  "Alisson Becker",
+                        "club":  "Liverpool",
+                        "country":  "Brazil",
+                        "imageUrl":  "https://i.pravatar.cc/200?u=p009",
+                        "number":  1,
+                        "positions":  [
+                                          "GK"
+                                      ],
+                        "rating":  89,
+                        "age":  31,
+                        "preferredFoot":  "Right"
+                    },
+                    {
+                        "id":  "p010",
+                        "name":  "Manuel Neuer",
+                        "club":  "Bayern Munich",
+                        "country":  "Germany",
+                        "imageUrl":  "https://i.pravatar.cc/200?u=p010",
+                        "number":  1,
+                        "positions":  [
+                                          "GK"
+                                      ],
+                        "rating":  87,
+                        "age":  37,
+                        "preferredFoot":  "Right"
+                    },
+                    {
+                        "id":  "p011",
+                        "name":  "Virgil van Dijk",
+                        "club":  "Liverpool",
+                        "country":  "Netherlands",
+                        "imageUrl":  "https://i.pravatar.cc/200?u=p011",
+                        "number":  4,
+                        "positions":  [
+                                          "CB"
+                                      ],
+                        "rating":  89,
+                        "age":  32,
+                        "preferredFoot":  "Right"
+                    },
+                    {
+                        "id":  "p012",
+                        "name":  "RÃºben Dias",
+                        "club":  "Manchester City",
+                        "country":  "Portugal",
+                        "imageUrl":  "https://i.pravatar.cc/200?u=p012",
+                        "number":  3,
+                        "positions":  [
+                                          "CB"
+                                      ],
+                        "rating":  88,
+                        "age":  26,
+                        "preferredFoot":  "Right"
+                    },
+                    {
+                        "id":  "p013",
+                        "name":  "William Saliba",
+                        "club":  "Arsenal",
+                        "country":  "France",
+                        "imageUrl":  "https://i.pravatar.cc/200?u=p013",
+                        "number":  12,
+                        "positions":  [
+                                          "CB"
+                                      ],
+                        "rating":  87,
+                        "age":  22,
+                        "preferredFoot":  "Right"
+                    },
+                    {
+                        "id":  "p014",
+                        "name":  "Antonio RÃ¼diger",
+                        "club":  "Real Madrid",
+                        "country":  "Germany",
+                        "imageUrl":  "https://i.pravatar.cc/200?u=p014",
+                        "number":  22,
+                        "positions":  [
+                                          "CB"
+                                      ],
+                        "rating":  85,
+                        "age":  31,
+                        "preferredFoot":  "Right"
+                    },
+                    {
+                        "id":  "p015",
+                        "name":  "Trent Alexander-Arnold",
+                        "club":  "Liverpool",
+                        "country":  "England",
+                        "imageUrl":  "https://i.pravatar.cc/200?u=p015",
+                        "number":  66,
+                        "positions":  [
+                                          "RB",
+                                          "CM"
+                                      ],
+                        "rating":  87,
+                        "age":  25,
+                        "preferredFoot":  "Right"
+                    },
+                    {
+                        "id":  "p016",
+                        "name":  "Theo HernÃ¡ndez",
+                        "club":  "AC Milan",
+                        "country":  "France",
+                        "imageUrl":  "https://i.pravatar.cc/200?u=p016",
+                        "number":  19,
+                        "positions":  [
+                                          "LB",
+                                          "LWB"
+                                      ],
+                        "rating":  86,
+                        "age":  26,
+                        "preferredFoot":  "Left"
+                    },
+                    {
+                        "id":  "p017",
+                        "name":  "Achraf Hakimi",
+                        "club":  "PSG",
+                        "country":  "Morocco",
+                        "imageUrl":  "https://i.pravatar.cc/200?u=p017",
+                        "number":  2,
+                        "positions":  [
+                                          "RB",
+                                          "RWB"
+                                      ],
+                        "rating":  87,
+                        "age":  25,
+                        "preferredFoot":  "Right"
+                    },
+                    {
+                        "id":  "p018",
+                        "name":  "Alphonso Davies",
+                        "club":  "Bayern Munich",
+                        "country":  "Canada",
+                        "imageUrl":  "https://i.pravatar.cc/200?u=p018",
+                        "number":  19,
+                        "positions":  [
+                                          "LB",
+                                          "LWB"
+                                      ],
+                        "rating":  85,
+                        "age":  23,
+                        "preferredFoot":  "Left"
+                    },
+                    {
+                        "id":  "p019",
+                        "name":  "Kevin De Bruyne",
+                        "club":  "Manchester City",
+                        "country":  "Belgium",
+                        "imageUrl":  "https://i.pravatar.cc/200?u=p019",
+                        "number":  17,
+                        "positions":  [
+                                          "CAM",
+                                          "CM"
+                                      ],
+                        "rating":  91,
+                        "age":  32,
+                        "preferredFoot":  "Right"
+                    },
+                    {
+                        "id":  "p020",
+                        "name":  "Luka ModriÄ‡",
+                        "club":  "Real Madrid",
+                        "country":  "Croatia",
+                        "imageUrl":  "https://i.pravatar.cc/200?u=p020",
+                        "number":  10,
+                        "positions":  [
+                                          "CM",
+                                          "CDM"
+                                      ],
+                        "rating":  86,
+                        "age":  38,
+                        "preferredFoot":  "Right"
+                    },
+                    {
+                        "id":  "p021",
+                        "name":  "Pedri",
+                        "club":  "Barcelona",
+                        "country":  "Spain",
+                        "imageUrl":  "https://i.pravatar.cc/200?u=p021",
+                        "number":  8,
+                        "positions":  [
+                                          "CM",
+                                          "CAM"
+                                      ],
+                        "rating":  87,
+                        "age":  21,
+                        "preferredFoot":  "Right"
+                    },
+                    {
+                        "id":  "p022",
+                        "name":  "Jamal Musiala",
+                        "club":  "Bayern Munich",
+                        "country":  "Germany",
+                        "imageUrl":  "https://i.pravatar.cc/200?u=p022",
+                        "number":  42,
+                        "positions":  [
+                                          "CAM",
+                                          "CM",
+                                          "LW"
+                                      ],
+                        "rating":  88,
+                        "age":  21,
+                        "preferredFoot":  "Right"
+                    },
+                    {
+                        "id":  "p023",
+                        "name":  "Phil Foden",
+                        "club":  "Manchester City",
+                        "country":  "England",
+                        "imageUrl":  "https://i.pravatar.cc/200?u=p023",
+                        "number":  47,
+                        "positions":  [
+                                          "CAM",
+                                          "LW",
+                                          "CM"
+                                      ],
+                        "rating":  88,
+                        "age":  24,
+                        "preferredFoot":  "Left"
+                    },
+                    {
+                        "id":  "p024",
+                        "name":  "Bukayo Saka",
+                        "club":  "Arsenal",
+                        "country":  "England",
+                        "imageUrl":  "https://i.pravatar.cc/200?u=p024",
+                        "number":  7,
+                        "positions":  [
+                                          "RW",
+                                          "CAM"
+                                      ],
+                        "rating":  87,
+                        "age":  22,
+                        "preferredFoot":  "Left"
+                    },
+                    {
+                        "id":  "p025",
+                        "name":  "Florian Wirtz",
+                        "club":  "Bayer Leverkusen",
+                        "country":  "Germany",
+                        "imageUrl":  "https://i.pravatar.cc/200?u=p025",
+                        "number":  10,
+                        "positions":  [
+                                          "CAM",
+                                          "LW",
+                                          "CM"
+                                      ],
+                        "rating":  88,
+                        "age":  20,
+                        "preferredFoot":  "Right"
+                    },
+                    {
+                        "id":  "p026",
+                        "name":  "Harry Kane",
+                        "club":  "Bayern Munich",
+                        "country":  "England",
+                        "imageUrl":  "https://i.pravatar.cc/200?u=p026",
+                        "number":  9,
+                        "positions":  [
+                                          "ST",
+                                          "CF"
+                                      ],
+                        "rating":  90,
+                        "age":  30,
+                        "preferredFoot":  "Right"
+                    },
+                    {
+                        "id":  "p027",
+                        "name":  "Lautaro MartÃ­nez",
+                        "club":  "Inter Milan",
+                        "country":  "Argentina",
+                        "imageUrl":  "https://i.pravatar.cc/200?u=p027",
+                        "number":  10,
+                        "positions":  [
+                                          "ST",
+                                          "CF"
+                                      ],
+                        "rating":  88,
+                        "age":  26,
+                        "preferredFoot":  "Right"
+                    },
+                    {
+                        "id":  "p028",
+                        "name":  "Victor Osimhen",
+                        "club":  "Galatasaray",
+                        "country":  "Nigeria",
+                        "imageUrl":  "https://i.pravatar.cc/200?u=p028",
+                        "number":  9,
+                        "positions":  [
+                                          "ST"
+                                      ],
+                        "rating":  87,
+                        "age":  25,
+                        "preferredFoot":  "Right"
+                    },
+                    {
+                        "id":  "p029",
+                        "name":  "Declan Rice",
+                        "club":  "Arsenal",
+                        "country":  "England",
+                        "imageUrl":  "https://i.pravatar.cc/200?u=p029",
+                        "number":  41,
+                        "positions":  [
+                                          "CDM",
+                                          "CM"
+                                      ],
+                        "rating":  87,
+                        "age":  25,
+                        "preferredFoot":  "Right"
+                    },
+                    {
+                        "id":  "p030",
+                        "name":  "Federico Valverde",
+                        "club":  "Real Madrid",
+                        "country":  "Uruguay",
+                        "imageUrl":  "https://i.pravatar.cc/200?u=p030",
+                        "number":  15,
+                        "positions":  [
+                                          "CM",
+                                          "RM",
+                                          "CDM"
+                                      ],
+                        "rating":  87,
+                        "age":  25,
+                        "preferredFoot":  "Right"
+                    },
+                    {
+                        "id":  "p031",
+                        "name":  "Gavi",
+                        "club":  "Barcelona",
+                        "country":  "Spain",
+                        "imageUrl":  "https://i.pravatar.cc/200?u=p031",
+                        "number":  6,
+                        "positions":  [
+                                          "CM",
+                                          "CDM"
+                                      ],
+                        "rating":  85,
+                        "age":  19,
+                        "preferredFoot":  "Left"
+                    },
+                    {
+                        "id":  "p032",
+                        "name":  "Bernardo Silva",
+                        "club":  "Manchester City",
+                        "country":  "Portugal",
+                        "imageUrl":  "https://i.pravatar.cc/200?u=p032",
+                        "number":  20,
+                        "positions":  [
+                                          "CM",
+                                          "RW",
+                                          "CAM"
+                                      ],
+                        "rating":  87,
+                        "age":  29,
+                        "preferredFoot":  "Left"
+                    },
+                    {
+                        "id":  "p033",
+                        "name":  "Rafael LeÃ£o",
+                        "club":  "AC Milan",
+                        "country":  "Portugal",
+                        "imageUrl":  "https://i.pravatar.cc/200?u=p033",
+                        "number":  10,
+                        "positions":  [
+                                          "LW",
+                                          "ST"
+                                      ],
+                        "rating":  85,
+                        "age":  25,
+                        "preferredFoot":  "Right"
+                    },
+                    {
+                        "id":  "p034",
+                        "name":  "Ousmane DembÃ©lÃ©",
+                        "club":  "PSG",
+                        "country":  "France",
+                        "imageUrl":  "https://i.pravatar.cc/200?u=p034",
+                        "number":  10,
+                        "positions":  [
+                                          "RW",
+                                          "LW"
+                                      ],
+                        "rating":  85,
+                        "age":  26,
+                        "preferredFoot":  "Right"
+                    },
+                    {
+                        "id":  "p035",
+                        "name":  "Mohamed Salah",
+                        "club":  "Liverpool",
+                        "country":  "Egypt",
+                        "imageUrl":  "https://i.pravatar.cc/200?u=p035",
+                        "number":  11,
+                        "positions":  [
+                                          "RW",
+                                          "ST"
+                                      ],
+                        "rating":  89,
+                        "age":  31,
+                        "preferredFoot":  "Left"
+                    },
+                    {
+                        "id":  "p036",
+                        "name":  "Son Heung-min",
+                        "club":  "Tottenham",
+                        "country":  "South Korea",
+                        "imageUrl":  "https://i.pravatar.cc/200?u=p036",
+                        "number":  7,
+                        "positions":  [
+                                          "LW",
+                                          "ST",
+                                          "RW"
+                                      ],
+                        "rating":  86,
+                        "age":  31,
+                        "preferredFoot":  "Right"
+                    },
+                    {
+                        "id":  "p037",
+                        "name":  "Marcus Rashford",
+                        "club":  "Manchester United",
+                        "country":  "England",
+                        "imageUrl":  "https://i.pravatar.cc/200?u=p037",
+                        "number":  10,
+                        "positions":  [
+                                          "LW",
+                                          "ST"
+                                      ],
+                        "rating":  83,
+                        "age":  26,
+                        "preferredFoot":  "Right"
+                    },
+                    {
+                        "id":  "p038",
+                        "name":  "Robert Lewandowski",
+                        "club":  "Barcelona",
+                        "country":  "Poland",
+                        "imageUrl":  "https://i.pravatar.cc/200?u=p038",
+                        "number":  9,
+                        "positions":  [
+                                          "ST",
+                                          "CF"
+                                      ],
+                        "rating":  88,
+                        "age":  35,
+                        "preferredFoot":  "Right"
+                    }
+                ]
+}
