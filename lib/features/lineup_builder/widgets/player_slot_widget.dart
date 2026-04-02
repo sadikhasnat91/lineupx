@@ -1,5 +1,4 @@
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/material.dart';
+﻿import 'package:flutter/material.dart';
 import '../../../core/constants/app_colors.dart';
 import '../../../core/utils/helpers.dart';
 import '../../../data/models/player_model.dart';
@@ -134,11 +133,12 @@ class PlayerSlotWidget extends StatelessWidget {
       ),
       child: ClipOval(
         child: player!.imageUrl.isNotEmpty
-            ? CachedNetworkImage(
-                imageUrl: player!.imageUrl,
+            ? Image.network(
+                player!.imageUrl,
                 fit: BoxFit.cover,
-                placeholder: (_, __) => _initialsWidget(),
-                errorWidget: (_, __, ___) => _initialsWidget(),
+                errorBuilder: (_, __, ___) => _initialsWidget(),
+                loadingBuilder: (_, child, progress) =>
+                    progress == null ? child : _initialsWidget(),
               )
             : _initialsWidget(),
       ),

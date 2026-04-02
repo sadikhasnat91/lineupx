@@ -47,6 +47,9 @@ Future<void> main() async {
   Get.put<LineupRepository>(LineupRepository());
   Get.put<FormationRepository>(FormationRepository());
 
+  // Preload bundled player data
+  await PlayerSampleData.load();
+
   runApp(const LineupXApp());
 }
 

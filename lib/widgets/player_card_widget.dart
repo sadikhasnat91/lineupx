@@ -1,5 +1,4 @@
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/material.dart';
+﻿import 'package:flutter/material.dart';
 import '../core/constants/app_colors.dart';
 import '../core/utils/helpers.dart';
 import '../data/models/player_model.dart';
@@ -70,7 +69,7 @@ class PlayerCardWidget extends StatelessWidget {
                           overflow: TextOverflow.ellipsis,
                         ),
                         const Text(
-                          ' · ',
+                          ' Â· ',
                           style: TextStyle(
                             color: AppColors.textMuted,
                             fontSize: 11,
@@ -174,23 +173,25 @@ class PlayerCardWidget extends StatelessWidget {
 /// Circular avatar with fallback initials.
 class _PlayerAvatar extends StatelessWidget {
   final PlayerModel player;
-  final double size;
 
-  const _PlayerAvatar({required this.player, this.size = 48});
+  const _PlayerAvatar({required this.player});
+
+  static const double _size = 48;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: size,
-      height: size,
+      width: _size,
+      height: _size,
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(size / 2.5),
+        borderRadius: BorderRadius.circular(_size / 2.5),
         child: player.imageUrl.isNotEmpty
-            ? CachedNetworkImage(
-                imageUrl: player.imageUrl,
+            ? Image.network(
+                player.imageUrl,
                 fit: BoxFit.cover,
-                placeholder: (_, __) => _initials(),
-                errorWidget: (_, __, ___) => _initials(),
+                errorBuilder: (_, __, ___) => _initials(),
+                loadingBuilder: (_, child, progress) =>
+                    progress == null ? child : _initials(),
               )
             : _initials(),
       ),
@@ -205,7 +206,7 @@ class _PlayerAvatar extends StatelessWidget {
         AppHelpers.initials(player.name),
         style: TextStyle(
           color: AppHelpers.ratingColor(player.rating),
-          fontSize: size * 0.3,
+          fontSize: _size * 0.3,
           fontWeight: FontWeight.w800,
         ),
       ),

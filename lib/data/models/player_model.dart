@@ -13,6 +13,19 @@ class PlayerModel {
   final int age;
   final String preferredFoot; // 'Right' | 'Left' | 'Both'
 
+  // Detailed stats
+  final int pace;
+  final int shooting;
+  final int passing;
+  final int dribbling;
+  final int defending;
+  final int physical;
+  final int potential;
+  final int weakFoot;
+  final int skillMoves;
+  final String height;
+  final String weight;
+
   const PlayerModel({
     required this.id,
     required this.name,
@@ -24,7 +37,49 @@ class PlayerModel {
     required this.rating,
     required this.age,
     required this.preferredFoot,
+    this.pace = 0,
+    this.shooting = 0,
+    this.passing = 0,
+    this.dribbling = 0,
+    this.defending = 0,
+    this.physical = 0,
+    this.potential = 0,
+    this.weakFoot = 0,
+    this.skillMoves = 0,
+    this.height = '',
+    this.weight = '',
   });
+
+  // ── Asset JSON (bundled player data) ─────────────────────────────────────────
+
+  factory PlayerModel.fromAssetJson(Map<String, dynamic> j) {
+    final int numericId = (j['id'] as num?)?.toInt() ?? 0;
+    final String id = numericId.toString();
+    final int portraitIdx = numericId % 100;
+    return PlayerModel(
+      id: id,
+      name: j['name'] as String? ?? '',
+      club: j['club'] as String? ?? '',
+      country: j['nationality'] as String? ?? '',
+      imageUrl: 'https://randomuser.me/api/portraits/men/$portraitIdx.jpg',
+      number: 0,
+      positions: [j['position'] as String? ?? 'ST'],
+      rating: (j['overall'] as num?)?.toInt() ?? 70,
+      age: (j['age'] as num?)?.toInt() ?? 0,
+      preferredFoot: j['preferredFoot'] as String? ?? 'Right',
+      pace: (j['pace'] as num?)?.toInt() ?? 0,
+      shooting: (j['shooting'] as num?)?.toInt() ?? 0,
+      passing: (j['passing'] as num?)?.toInt() ?? 0,
+      dribbling: (j['dribbling'] as num?)?.toInt() ?? 0,
+      defending: (j['defending'] as num?)?.toInt() ?? 0,
+      physical: (j['physical'] as num?)?.toInt() ?? 0,
+      potential: (j['potential'] as num?)?.toInt() ?? 0,
+      weakFoot: (j['weakFoot'] as num?)?.toInt() ?? 0,
+      skillMoves: (j['skillMoves'] as num?)?.toInt() ?? 0,
+      height: j['height']?.toString() ?? '',
+      weight: j['weight']?.toString() ?? '',
+    );
+  }
 
   // ── Firestore ────────────────────────────────────────────────────────────────
 
@@ -41,6 +96,17 @@ class PlayerModel {
       rating: (data['rating'] as num?)?.toInt() ?? 70,
       age: (data['age'] as num?)?.toInt() ?? 0,
       preferredFoot: data['preferredFoot'] as String? ?? 'Right',
+      pace: (data['pace'] as num?)?.toInt() ?? 0,
+      shooting: (data['shooting'] as num?)?.toInt() ?? 0,
+      passing: (data['passing'] as num?)?.toInt() ?? 0,
+      dribbling: (data['dribbling'] as num?)?.toInt() ?? 0,
+      defending: (data['defending'] as num?)?.toInt() ?? 0,
+      physical: (data['physical'] as num?)?.toInt() ?? 0,
+      potential: (data['potential'] as num?)?.toInt() ?? 0,
+      weakFoot: (data['weakFoot'] as num?)?.toInt() ?? 0,
+      skillMoves: (data['skillMoves'] as num?)?.toInt() ?? 0,
+      height: data['height']?.toString() ?? '',
+      weight: data['weight']?.toString() ?? '',
     );
   }
 
@@ -54,6 +120,17 @@ class PlayerModel {
         'rating': rating,
         'age': age,
         'preferredFoot': preferredFoot,
+        'pace': pace,
+        'shooting': shooting,
+        'passing': passing,
+        'dribbling': dribbling,
+        'defending': defending,
+        'physical': physical,
+        'potential': potential,
+        'weakFoot': weakFoot,
+        'skillMoves': skillMoves,
+        'height': height,
+        'weight': weight,
       };
 
   // ── JSON (Hive caching) ──────────────────────────────────────────────────────
@@ -69,6 +146,17 @@ class PlayerModel {
         rating: (json['rating'] as num?)?.toInt() ?? 70,
         age: (json['age'] as num?)?.toInt() ?? 0,
         preferredFoot: json['preferredFoot'] as String? ?? 'Right',
+        pace: (json['pace'] as num?)?.toInt() ?? 0,
+        shooting: (json['shooting'] as num?)?.toInt() ?? 0,
+        passing: (json['passing'] as num?)?.toInt() ?? 0,
+        dribbling: (json['dribbling'] as num?)?.toInt() ?? 0,
+        defending: (json['defending'] as num?)?.toInt() ?? 0,
+        physical: (json['physical'] as num?)?.toInt() ?? 0,
+        potential: (json['potential'] as num?)?.toInt() ?? 0,
+        weakFoot: (json['weakFoot'] as num?)?.toInt() ?? 0,
+        skillMoves: (json['skillMoves'] as num?)?.toInt() ?? 0,
+        height: json['height']?.toString() ?? '',
+        weight: json['weight']?.toString() ?? '',
       );
 
   Map<String, dynamic> toJson() => {
@@ -82,6 +170,17 @@ class PlayerModel {
         'rating': rating,
         'age': age,
         'preferredFoot': preferredFoot,
+        'pace': pace,
+        'shooting': shooting,
+        'passing': passing,
+        'dribbling': dribbling,
+        'defending': defending,
+        'physical': physical,
+        'potential': potential,
+        'weakFoot': weakFoot,
+        'skillMoves': skillMoves,
+        'height': height,
+        'weight': weight,
       };
 
   PlayerModel copyWith({
@@ -95,6 +194,17 @@ class PlayerModel {
     int? rating,
     int? age,
     String? preferredFoot,
+    int? pace,
+    int? shooting,
+    int? passing,
+    int? dribbling,
+    int? defending,
+    int? physical,
+    int? potential,
+    int? weakFoot,
+    int? skillMoves,
+    String? height,
+    String? weight,
   }) =>
       PlayerModel(
         id: id ?? this.id,
@@ -107,6 +217,17 @@ class PlayerModel {
         rating: rating ?? this.rating,
         age: age ?? this.age,
         preferredFoot: preferredFoot ?? this.preferredFoot,
+        pace: pace ?? this.pace,
+        shooting: shooting ?? this.shooting,
+        passing: passing ?? this.passing,
+        dribbling: dribbling ?? this.dribbling,
+        defending: defending ?? this.defending,
+        physical: physical ?? this.physical,
+        potential: potential ?? this.potential,
+        weakFoot: weakFoot ?? this.weakFoot,
+        skillMoves: skillMoves ?? this.skillMoves,
+        height: height ?? this.height,
+        weight: weight ?? this.weight,
       );
 
   String get primaryPosition =>

@@ -1,5 +1,4 @@
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/material.dart';
+﻿import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../core/constants/app_colors.dart';
@@ -75,7 +74,7 @@ class ManagerModeScreen extends StatelessWidget {
   }
 }
 
-// ── Empty state ───────────────────────────────────────────────────────────────
+// â”€â”€ Empty state â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 class _EmptyState extends StatelessWidget {
   @override
@@ -132,7 +131,7 @@ class _EmptyState extends StatelessWidget {
   }
 }
 
-// ── Manager header ────────────────────────────────────────────────────────────
+// â”€â”€ Manager header â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 class _ManagerHeader extends StatelessWidget {
   final ManagerController ctrl;
@@ -232,7 +231,7 @@ class _ManagerHeader extends StatelessWidget {
   }
 }
 
-// ── Stats row ─────────────────────────────────────────────────────────────────
+// â”€â”€ Stats row â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 class _StatsRow extends StatelessWidget {
   final ManagerController ctrl;
@@ -320,7 +319,7 @@ class _MiniStat extends StatelessWidget {
   }
 }
 
-// ── Tactics card ──────────────────────────────────────────────────────────────
+// â”€â”€ Tactics card â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 class _TacticsCard extends StatelessWidget {
   final ManagerController ctrl;
@@ -397,7 +396,7 @@ class _TacticChip extends StatelessWidget {
   }
 }
 
-// ── Top performers ────────────────────────────────────────────────────────────
+// â”€â”€ Top performers â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 class _TopPerformers extends StatelessWidget {
   final ManagerController ctrl;
@@ -506,7 +505,7 @@ class _TopPlayerTile extends StatelessWidget {
   }
 }
 
-// ── Starting eleven card ──────────────────────────────────────────────────────
+// â”€â”€ Starting eleven card â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 class _StartingElevenCard extends StatelessWidget {
   final ManagerController ctrl;
@@ -620,7 +619,7 @@ class _SquadRow extends StatelessWidget {
                       ),
                     ],
                   )
-                : const Text('— Empty slot —',
+                : const Text('â€” Empty slot â€”',
                     style: TextStyle(
                         color: AppColors.textMuted,
                         fontSize: 12,
@@ -666,7 +665,7 @@ class _Badge extends StatelessWidget {
   }
 }
 
-// ── Bench card ────────────────────────────────────────────────────────────────
+// â”€â”€ Bench card â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 class _BenchCard extends StatelessWidget {
   final ManagerController ctrl;
@@ -712,7 +711,7 @@ class _BenchCard extends StatelessWidget {
   }
 }
 
-// ── Shared widgets ────────────────────────────────────────────────────────────
+// â”€â”€ Shared widgets â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 class _CardHeader extends StatelessWidget {
   final String title;
@@ -772,19 +771,20 @@ class _PlayerAvatar extends StatelessWidget {
         : AppColors.textMuted;
 
     if (player.imageUrl.isNotEmpty) {
-      return CachedNetworkImage(
-        imageUrl: player.imageUrl,
-        imageBuilder: (_, img) => Container(
+      return ClipOval(
+        child: SizedBox(
           width: size,
           height: size,
-          decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              image: DecorationImage(image: img, fit: BoxFit.cover)),
+          child: Image.network(
+            player.imageUrl,
+            fit: BoxFit.cover,
+            errorBuilder: (_, __, ___) =>
+                _InitialsAvatar(initials: initials, color: posColor, size: size),
+            loadingBuilder: (_, child, progress) => progress == null
+                ? child
+                : _InitialsAvatar(initials: initials, color: posColor, size: size),
+          ),
         ),
-        errorWidget: (_, __, ___) =>
-            _InitialsAvatar(initials: initials, color: posColor, size: size),
-        placeholder: (_, __) =>
-            _InitialsAvatar(initials: initials, color: posColor, size: size),
       );
     }
     return _InitialsAvatar(initials: initials, color: posColor, size: size);
