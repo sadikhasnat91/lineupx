@@ -42,7 +42,8 @@ class LineupController extends GetxController {
       // New lineup from selected formation
       final formation = args?['formation'] as FormationModel?;
       if (formation == null) {
-        log('[LineupController] No formation provided!');
+        log('[LineupController] No formation provided – redirecting.');
+        Get.offNamed('/formation-selection');
         return;
       }
       lineup = LineupModel(
@@ -76,6 +77,16 @@ class LineupController extends GetxController {
   }
 
   PlayerModel? playerAt(String positionId) => slots[positionId]?.value;
+
+  void updatePlayerNumber(String positionId, int number) {
+    final current = slots[positionId]?.value;
+    if (current == null) return;
+
+    final safeNumber = number.clamp(0, 999);
+    final updated = current.copyWith(number: safeNumber);
+    slots[positionId]?.value = updated;
+    lineup.playerSlots[positionId] = updated;
+  }
 
   // ── Captain ───────────────────────────────────────────────────────────────
 

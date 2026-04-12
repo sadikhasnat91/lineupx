@@ -1,0 +1,507 @@
+[
+  {
+    "name": "Sir Alex Ferguson",
+    "country": "Scotland",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/2/2a/Sir_Alex_Ferguson_2016.png"
+  },
+  {
+    "name": "Pep Guardiola",
+    "country": "Spain",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/2023-10-04_Fu%C3%9Fball%2C_M%C3%A4nner%2C_UEFA_Champions_League%2C_RB_Leipzig_-_Manchester_City_FC_1DX_2797_%28cropped%29.jpg/330px-2023-10-04_Fu%C3%9Fball%2C_M%C3%A4nner%2C_UEFA_Champions_League%2C_RB_Leipzig_-_Manchester_City_FC_1DX_2797_%28cropped%29.jpg"
+  },
+  {
+    "name": "José Mourinho",
+    "country": "Portugal",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Jos%C3%A9_Mourinho_20250206_%281%29.jpg/330px-Jos%C3%A9_Mourinho_20250206_%281%29.jpg"
+  },
+  {
+    "name": "Carlo Ancelotti",
+    "country": "Italy",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/26.01.2026_-_Reuni%C3%A3o_com_o_Presidente_da_Federa%C3%A7%C3%A3o_Internacional_de_Futebol_%28FIFA%29%2C_Gianni_Infantino_-_55062589679_%28Carlo_Ancelotti%29_%28cropped%29.jpg/330px-26.01.2026_-_Reuni%C3%A3o_com_o_Presidente_da_Federa%C3%A7%C3%A3o_Internacional_de_Futebol_%28FIFA%29%2C_Gianni_Infantino_-_55062589679_%28Carlo_Ancelotti%29_%28cropped%29.jpg"
+  },
+  {
+    "name": "Zinedine Zidane",
+    "country": "France",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Zinedine_Zidane_by_Tasnim_03.jpg/330px-Zinedine_Zidane_by_Tasnim_03.jpg"
+  },
+  {
+    "name": "Jürgen Klopp",
+    "country": "Germany",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/J%C3%BCrgen_Klopp%2C_Liverpool_vs._Chelsea%2C_UEFA_Super_Cup_2019-08-14_04.jpg/330px-J%C3%BCrgen_Klopp%2C_Liverpool_vs._Chelsea%2C_UEFA_Super_Cup_2019-08-14_04.jpg"
+  },
+  {
+    "name": "Arsène Wenger",
+    "country": "France",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/25th_Laureus_World_Sports_Awards_-_Red_Carpet_-_Ars%C3%A8ne_Wenger_-_240422_192850_%28cropped%29.jpg/330px-25th_Laureus_World_Sports_Awards_-_Red_Carpet_-_Ars%C3%A8ne_Wenger_-_240422_192850_%28cropped%29.jpg"
+  },
+  {
+    "name": "Antonio Conte",
+    "country": "Italy",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/20150616_Antonio_Conte.jpg/330px-20150616_Antonio_Conte.jpg"
+  },
+  {
+    "name": "Diego Simeone",
+    "country": "Argentina",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/25th_Laureus_World_Sports_Awards_-_Red_Carpet_-_Diego_Simeone_-_240422_192621-2_%28cropped%29.jpg/330px-25th_Laureus_World_Sports_Awards_-_Red_Carpet_-_Diego_Simeone_-_240422_192621-2_%28cropped%29.jpg"
+  },
+  {
+    "name": "Louis van Gaal",
+    "country": "Netherlands",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Louis_van_Gaal_2014.jpg/330px-Louis_van_Gaal_2014.jpg"
+  },
+  {
+    "name": "Thomas Tuchel",
+    "country": "Germany",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/2019-07-17_SG_Dynamo_Dresden_vs._Paris_Saint-Germain_by_Sandro_Halank%E2%80%93175.jpg/330px-2019-07-17_SG_Dynamo_Dresden_vs._Paris_Saint-Germain_by_Sandro_Halank%E2%80%93175.jpg"
+  },
+  {
+    "name": "Rinus Michels",
+    "country": "Netherlands",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Koppen_Nederlandse_voetballers_Rinus_Michels%2C_Bestanddeelnr_254-9536_2.jpg/330px-Koppen_Nederlandse_voetballers_Rinus_Michels%2C_Bestanddeelnr_254-9536_2.jpg"
+  },
+  {
+    "name": "Johan Cruyff",
+    "country": "Netherlands",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Johan_Cruijff_%281974%29.jpg/330px-Johan_Cruijff_%281974%29.jpg"
+  },
+  {
+    "name": "Arrigo Sacchi",
+    "country": "Italy",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Arrigo_Sacchi_2007_%28cropped%29.jpg/330px-Arrigo_Sacchi_2007_%28cropped%29.jpg"
+  },
+  {
+    "name": "Vicente del Bosque",
+    "country": "Spain",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Vicente_del_Bosque_Euro_2012_final.jpg/330px-Vicente_del_Bosque_Euro_2012_final.jpg"
+  },
+  {
+    "name": "Marcelo Bielsa",
+    "country": "Argentina",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Marcelo_Bielsa_2018_%28cropped%29.jpg/330px-Marcelo_Bielsa_2018_%28cropped%29.jpg"
+  },
+  {
+    "name": "Didier Deschamps",
+    "country": "France",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Didier_Deschamps_in_2018.jpg/330px-Didier_Deschamps_in_2018.jpg"
+  },
+  {
+    "name": "Joachim Löw",
+    "country": "Germany",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/20180602_FIFA_Friendly_Match_Austria_vs._Germany_Jogi_L%C3%B6w_850_1386.jpg/330px-20180602_FIFA_Friendly_Match_Austria_vs._Germany_Jogi_L%C3%B6w_850_1386.jpg"
+  },
+  {
+    "name": "Luis Enrique",
+    "country": "Spain",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Luis_Enrique_2014.jpg/330px-Luis_Enrique_2014.jpg"
+  },
+  {
+    "name": "Roberto Mancini",
+    "country": "Italy",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Roberto_Mancini_Saudi_Arabia-South_Korea_match_2023_AFC_Asian_Cup.jpg/330px-Roberto_Mancini_Saudi_Arabia-South_Korea_match_2023_AFC_Asian_Cup.jpg"
+  },
+  {
+    "name": "Massimiliano Allegri",
+    "country": "Italy",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Incontro_con_le_squadre_finaliste_della_Coppa_Italia_di_calcio_Frecciarossa_Atalanta_-_Juventus_01_-_Massimiliano_Allegri_%28cropped%29.jpg/330px-Incontro_con_le_squadre_finaliste_della_Coppa_Italia_di_calcio_Frecciarossa_Atalanta_-_Juventus_01_-_Massimiliano_Allegri_%28cropped%29.jpg"
+  },
+  {
+    "name": "Erik ten Hag",
+    "country": "Netherlands",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/%D0%9E%D1%82%D0%BA%D1%80%D1%8B%D1%82%D0%B0%D1%8F_%D1%82%D1%80%D0%B5%D0%BD%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B0_%C2%AB%D0%90%D1%8F%D0%BA%D1%81%D0%B0%C2%BB_%D0%BF%D0%B5%D1%80%D0%B5%D0%B4_%D0%BC%D0%B0%D1%82%D1%87%D0%B5%D0%BC_%D1%81_%C2%AB%D0%94%D0%B8%D0%BD%D0%B0%D0%BC%D0%BE%C2%BB._27_%D0%B0%D0%B2%D0%B3%D1%83%D1%81%D1%82%D0%B0_2018_%D0%B3%D0%BE%D0%B4%D0%B0_%E2%80%94_900304_%28Erik_ten_Hag%29.jpg/330px-%D0%9E%D1%82%D0%BA%D1%80%D1%8B%D1%82%D0%B0%D1%8F_%D1%82%D1%80%D0%B5%D0%BD%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B0_%C2%AB%D0%90%D1%8F%D0%BA%D1%81%D0%B0%C2%BB_%D0%BF%D0%B5%D1%80%D0%B5%D0%B4_%D0%BC%D0%B0%D1%82%D1%87%D0%B5%D0%BC_%D1%81_%C2%AB%D0%94%D0%B8%D0%BD%D0%B0%D0%BC%D0%BE%C2%BB._27_%D0%B0%D0%B2%D0%B3%D1%83%D1%81%D1%82%D0%B0_2018_%D0%B3%D0%BE%D0%B4%D0%B0_%E2%80%94_900304_%28Erik_ten_Hag%29.jpg"
+  },
+  {
+    "name": "Graham Potter",
+    "country": "England",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Graham_Potter%2C_Brighton_%26_Hove_Albion_vs_RCD_Espanyol%2C_30_July_2022_%281%29_%28cropped%29.jpg/330px-Graham_Potter%2C_Brighton_%26_Hove_Albion_vs_RCD_Espanyol%2C_30_July_2022_%281%29_%28cropped%29.jpg"
+  },
+  {
+    "name": "Mikel Arteta",
+    "country": "Spain",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Mikel_Arteta_2021_%28cropped%29.png/330px-Mikel_Arteta_2021_%28cropped%29.png"
+  },
+  {
+    "name": "Xavi Hernández",
+    "country": "Spain",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Xavi_13981129001173637176666027076571.jpg/330px-Xavi_13981129001173637176666027076571.jpg"
+  },
+  {
+    "name": "Frank Lampard",
+    "country": "England",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Frank_Lampard_2019.jpg/330px-Frank_Lampard_2019.jpg"
+  },
+  {
+    "name": "Steven Gerrard",
+    "country": "England",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Steven_Gerrard_2018.jpg/330px-Steven_Gerrard_2018.jpg"
+  },
+  {
+    "name": "Ole Gunnar Solskjær",
+    "country": "Norway",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Ole_Gunnar_Solskjaer_Trondheim2011-1_crop.jpg/330px-Ole_Gunnar_Solskjaer_Trondheim2011-1_crop.jpg"
+  },
+  {
+    "name": "Brendan Rodgers",
+    "country": "Northern Ireland",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/0/0e/Brendan_Rodgers_2021_%28cropped%29.jpg"
+  },
+  {
+    "name": "Unai Emery",
+    "country": "Spain",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Unai_Emery_-_Sevilla_%28cropped%29.jpg/330px-Unai_Emery_-_Sevilla_%28cropped%29.jpg"
+  },
+  {
+    "name": "Julian Nagelsmann",
+    "country": "Germany",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Julian_Nagelsmann.jpg/330px-Julian_Nagelsmann.jpg"
+  },
+  {
+    "name": "Hansi Flick",
+    "country": "Germany",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/2022_Hansi_Flick_%28cropped%29.jpg/330px-2022_Hansi_Flick_%28cropped%29.jpg"
+  },
+  {
+    "name": "Ralf Rangnick",
+    "country": "Germany",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/2022-07-30_Fu%C3%9Fball%2C_M%C3%A4nner%2C_DFL-Supercup%2C_RB_Leipzig_-_FC_Bayern_M%C3%BCnchen_1DX_3148_by_Stepro.jpg/330px-2022-07-30_Fu%C3%9Fball%2C_M%C3%A4nner%2C_DFL-Supercup%2C_RB_Leipzig_-_FC_Bayern_M%C3%BCnchen_1DX_3148_by_Stepro.jpg"
+  },
+  {
+    "name": "Niko Kovač",
+    "country": "Croatia",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/FC_Salzburg_gegen_GNK_Dinamo_Zagreb_%282024-10-23_Championsleague_Dritte_Runde%29_04.jpg/330px-FC_Salzburg_gegen_GNK_Dinamo_Zagreb_%282024-10-23_Championsleague_Dritte_Runde%29_04.jpg"
+  },
+  {
+    "name": "Slaven Bilić",
+    "country": "Croatia",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Slaven_Bilic_West_Ham_Vs_Birkrikara_%2819941778785%29_%28cropped%29.jpg/330px-Slaven_Bilic_West_Ham_Vs_Birkrikara_%2819941778785%29_%28cropped%29.jpg"
+  },
+  {
+    "name": "Sam Allardyce",
+    "country": "England",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Big_Sam_Allardyce_signs_autographs_for_fans_October_2014.jpg/330px-Big_Sam_Allardyce_signs_autographs_for_fans_October_2014.jpg"
+  },
+  {
+    "name": "Roy Hodgson",
+    "country": "England",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Gen%C3%A8ve_Indoors_2014_-_20140114_-_Roy_Hodgson.jpg/330px-Gen%C3%A8ve_Indoors_2014_-_20140114_-_Roy_Hodgson.jpg"
+  },
+  {
+    "name": "Harry Redknapp",
+    "country": "England",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Harry_Redknapp_2011_%28cropped%29.jpg/330px-Harry_Redknapp_2011_%28cropped%29.jpg"
+  },
+  {
+    "name": "Alan Pardew",
+    "country": "England",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Alan_Pardew.jpg/330px-Alan_Pardew.jpg"
+  },
+  {
+    "name": "David Moyes",
+    "country": "Scotland",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/David_Moyes_2025.jpg/330px-David_Moyes_2025.jpg"
+  },
+  {
+    "name": "Ronald Koeman",
+    "country": "Netherlands",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/d/de/Ronald_Koeman_%282014%29_%28cropped%29.jpg"
+  },
+  {
+    "name": "Clarence Seedorf",
+    "country": "Netherlands",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Clarence_Seedorf_Introductory_Press_Conferences%2C_2_June_2025_-_40_%28cropped%29.jpg/330px-Clarence_Seedorf_Introductory_Press_Conferences%2C_2_June_2025_-_40_%28cropped%29.jpg"
+  },
+  {
+    "name": "Andrea Pirlo",
+    "country": "Italy",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/20150616_-_Portugal_-_Italie_-_Gen%C3%A8ve_-_Andrea_Pirlo_%28cropped%29.jpg/330px-20150616_-_Portugal_-_Italie_-_Gen%C3%A8ve_-_Andrea_Pirlo_%28cropped%29.jpg"
+  },
+  {
+    "name": "Gennaro Gattuso",
+    "country": "Italy",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Lausanne_vs_Sion_27_february_2013_-_Gennaro_Gattuso.jpg/330px-Lausanne_vs_Sion_27_february_2013_-_Gennaro_Gattuso.jpg"
+  },
+  {
+    "name": "Fabio Capello",
+    "country": "Italy",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/25th_Laureus_World_Sports_Awards_-_Red_Carpet_-_Fabio_Capello_-_240422_181452_%28cropped%29.jpg/330px-25th_Laureus_World_Sports_Awards_-_Red_Carpet_-_Fabio_Capello_-_240422_181452_%28cropped%29.jpg"
+  },
+  {
+    "name": "Cesare Prandelli",
+    "country": "Italy",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Cesare_Prandelli_Euro_2012_vs_England.jpg/330px-Cesare_Prandelli_Euro_2012_vs_England.jpg"
+  },
+  {
+    "name": "Marcello Lippi",
+    "country": "Italy",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Marcello_Lippi_at_China-Iran_press_conference_20190123.jpg/330px-Marcello_Lippi_at_China-Iran_press_conference_20190123.jpg"
+  },
+  {
+    "name": "Giovanni Trapattoni",
+    "country": "Italy",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/FIFA_WC-qualification_2014_-_Austria_vs_Ireland_2013-09-10_-_Giovanni_Trapattoni_03_%28cropped%29.JPG/330px-FIFA_WC-qualification_2014_-_Austria_vs_Ireland_2013-09-10_-_Giovanni_Trapattoni_03_%28cropped%29.JPG"
+  },
+  {
+    "name": "Roberto Donadoni",
+    "country": "Italy",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Roberto_Donadoni_-_SSC_Neapel_%282%29_%28cropped%29.jpg/330px-Roberto_Donadoni_-_SSC_Neapel_%282%29_%28cropped%29.jpg"
+  },
+  {
+    "name": "Claudio Ranieri",
+    "country": "Italy",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Ranieri2023_%28cropped%29.png/330px-Ranieri2023_%28cropped%29.png"
+  },
+  {
+    "name": "Sven-Göran Eriksson",
+    "country": "Sweden",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Sven-Goran_Eriksson_2012.jpg/330px-Sven-Goran_Eriksson_2012.jpg"
+  },
+  {
+    "name": "Guus Hiddink",
+    "country": "Netherlands",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Guus_Hiddink_2012.jpg/330px-Guus_Hiddink_2012.jpg"
+  },
+  {
+    "name": "Dick Advocaat",
+    "country": "Netherlands",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Dick_Advocaat_2021.jpg/330px-Dick_Advocaat_2021.jpg"
+  },
+  {
+    "name": "Frank de Boer",
+    "country": "Netherlands",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/FrankBoer.JPG/330px-FrankBoer.JPG"
+  },
+  {
+    "name": "Jaap Stam",
+    "country": "Netherlands",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Jaap_Stam_-_1.jpg/330px-Jaap_Stam_-_1.jpg"
+  },
+  {
+    "name": "Ruud Gullit",
+    "country": "Netherlands",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/25th_Laureus_World_Sports_Awards_-_Ruud_Gullit_-_240422_131911_%28cropped%29.jpg/330px-25th_Laureus_World_Sports_Awards_-_Ruud_Gullit_-_240422_131911_%28cropped%29.jpg"
+  },
+  {
+    "name": "Patrick Vieira",
+    "country": "France",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Patrick_Vieira_NYCFC_%28cropped%29.JPG/330px-Patrick_Vieira_NYCFC_%28cropped%29.JPG"
+  },
+  {
+    "name": "Thierry Henry",
+    "country": "France",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Thierry_Henry_%2851649035951%29_%28cropped%29.jpg/330px-Thierry_Henry_%2851649035951%29_%28cropped%29.jpg"
+  },
+  {
+    "name": "Laurent Blanc",
+    "country": "France",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Laurent_blanc_11_11_2013_reves_de_Clara.jpg/330px-Laurent_blanc_11_11_2013_reves_de_Clara.jpg"
+  },
+  {
+    "name": "Raymond Domenech",
+    "country": "France",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/0/01/Raymond_Domenech.jpg"
+  },
+  {
+    "name": "Tite",
+    "country": "Brazil",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/20180610_FIFA_Friendly_Match_Austria_vs._Brazil_Tite_850_0231.jpg/330px-20180610_FIFA_Friendly_Match_Austria_vs._Brazil_Tite_850_0231.jpg"
+  },
+  {
+    "name": "Luiz Felipe Scolari",
+    "country": "Brazil",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Felip%C3%A3o_cropped.jpg/330px-Felip%C3%A3o_cropped.jpg"
+  },
+  {
+    "name": "Dunga",
+    "country": "Brazil",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Aecio_Neves_e_Dunga_-_17-06-2008_%288368243127%29_%28cropped%29.jpg/330px-Aecio_Neves_e_Dunga_-_17-06-2008_%288368243127%29_%28cropped%29.jpg"
+  },
+  {
+    "name": "Carlos Alberto Parreira",
+    "country": "Brazil",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Carlos_Alberto_Parreira_at_University_of_the_Witwatersrand_2010-06-04_4.jpg/330px-Carlos_Alberto_Parreira_at_University_of_the_Witwatersrand_2010-06-04_4.jpg"
+  },
+  {
+    "name": "Mano Menezes",
+    "country": "Brazil",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Sorteio_das_Eliminat%C3%B3rias_-_Copa_2014_%285990481103%29_%28cropped%29.jpg/330px-Sorteio_das_Eliminat%C3%B3rias_-_Copa_2014_%285990481103%29_%28cropped%29.jpg"
+  },
+  {
+    "name": "Abel Ferreira",
+    "country": "Portugal",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Audi%C3%AAncia_com_Abel_Ferreira%2C_T%C3%A9cnico_do_Palmeiras_%28cropped%29.jpg/330px-Audi%C3%AAncia_com_Abel_Ferreira%2C_T%C3%A9cnico_do_Palmeiras_%28cropped%29.jpg"
+  },
+  {
+    "name": "Fernando Santos",
+    "country": "Portugal",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Fernando_Santos_20240116_1.jpg/330px-Fernando_Santos_20240116_1.jpg"
+  },
+  {
+    "name": "Paulo Bento",
+    "country": "Portugal",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Paulo_Bento_managing_South_Korea_at_2019_AFC_Asian_Cup.jpg/330px-Paulo_Bento_managing_South_Korea_at_2019_AFC_Asian_Cup.jpg"
+  },
+  {
+    "name": "Jorge Jesus",
+    "country": "Portugal",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/2020-02-17_Encontro_com_T%C3%A9cnico_do_Flamengo%2C_Jorge_Jesus_%28cropped%29.jpg/330px-2020-02-17_Encontro_com_T%C3%A9cnico_do_Flamengo%2C_Jorge_Jesus_%28cropped%29.jpg"
+  },
+  {
+    "name": "André Villas-Boas",
+    "country": "Portugal",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/2023_-_Stage_3_ENZ_2128_%2853331827395%29_%28cropped%29.jpg/330px-2023_-_Stage_3_ENZ_2128_%2853331827395%29_%28cropped%29.jpg"
+  },
+  {
+    "name": "Ottmar Hitzfeld",
+    "country": "Germany",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Otmar_Hitzfeld_in_Bulgaria_%28cropped%29.jpg/330px-Otmar_Hitzfeld_in_Bulgaria_%28cropped%29.jpg"
+  },
+  {
+    "name": "Felix Magath",
+    "country": "Germany",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Felix_Magath_-_Kicken_mit_Herz_2024_01.jpg/330px-Felix_Magath_-_Kicken_mit_Herz_2024_01.jpg"
+  },
+  {
+    "name": "Jupp Heynckes",
+    "country": "Germany",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Jupp_Heynckes_2013-01-04_%28cropped%29.jpg/330px-Jupp_Heynckes_2013-01-04_%28cropped%29.jpg"
+  },
+  {
+    "name": "Bernd Schuster",
+    "country": "Germany",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Bernd_Schuster_2013_%28cropped%29.jpg/330px-Bernd_Schuster_2013_%28cropped%29.jpg"
+  },
+  {
+    "name": "Matthias Sammer",
+    "country": "Germany",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Matthias_Sammer_2722.jpg/330px-Matthias_Sammer_2722.jpg"
+  },
+  {
+    "name": "Stefan Effenberg",
+    "country": "Germany",
+    "image": ""
+  },
+  {
+    "name": "Oliver Kahn",
+    "country": "Germany",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/2022-07-30_Fu%C3%9Fball%2C_M%C3%A4nner%2C_DFL-Supercup%2C_RB_Leipzig_-_FC_Bayern_M%C3%BCnchen_1DX_3179_by_Stepro.jpg/330px-2022-07-30_Fu%C3%9Fball%2C_M%C3%A4nner%2C_DFL-Supercup%2C_RB_Leipzig_-_FC_Bayern_M%C3%BCnchen_1DX_3179_by_Stepro.jpg"
+  },
+  {
+    "name": "Michael Laudrup",
+    "country": "Denmark",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Michael_Laudrup_2016c_%28cropped%29.jpg/330px-Michael_Laudrup_2016c_%28cropped%29.jpg"
+  },
+  {
+    "name": "Brian Laudrup",
+    "country": "Denmark",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Brian-Laudrup-Darren-Laver-Lars-Hogh_%28cropped%29.jpg/330px-Brian-Laudrup-Darren-Laver-Lars-Hogh_%28cropped%29.jpg"
+  },
+  {
+    "name": "Morten Olsen",
+    "country": "Denmark",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Morten_Olsen_2012_%28cropped%29.jpg/330px-Morten_Olsen_2012_%28cropped%29.jpg"
+  },
+  {
+    "name": "Chris Wilder",
+    "country": "England",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Chris_Wilder.png/330px-Chris_Wilder.png"
+  },
+  {
+    "name": "Sean Dyche",
+    "country": "England",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Sean_Dyche_-_Toffee_TV_EFC.png/330px-Sean_Dyche_-_Toffee_TV_EFC.png"
+  },
+  {
+    "name": "Eddie Howe",
+    "country": "England",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Eddie_Howe_2015.jpg/330px-Eddie_Howe_2015.jpg"
+  },
+  {
+    "name": "Dean Smith",
+    "country": "England",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Dean_Smith_1973.jpg/330px-Dean_Smith_1973.jpg"
+  },
+  {
+    "name": "Scott Parker",
+    "country": "England",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Scott_Parker_Bournemouth_%28cropped%29.jpg/330px-Scott_Parker_Bournemouth_%28cropped%29.jpg"
+  },
+  {
+    "name": "Wayne Rooney",
+    "country": "England",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Wayne_Rooney_%2850121495731%29_%28cropped%29.jpg/330px-Wayne_Rooney_%2850121495731%29_%28cropped%29.jpg"
+  },
+  {
+    "name": "Paul Scholes",
+    "country": "England",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/P_Scholes.jpg/330px-P_Scholes.jpg"
+  },
+  {
+    "name": "Ryan Giggs",
+    "country": "Wales",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/1/13/Ryan_Giggs_2015_%28cropped%29.jpg"
+  },
+  {
+    "name": "Gary Neville",
+    "country": "England",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Gary_Neville_2014_%28cropped%29.jpg/330px-Gary_Neville_2014_%28cropped%29.jpg"
+  },
+  {
+    "name": "Phil Neville",
+    "country": "England",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Phil_Neville_2019.jpg/330px-Phil_Neville_2019.jpg"
+  },
+  {
+    "name": "Hervé Renard",
+    "country": "France",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Herv%C3%A9_Renard.jpg/330px-Herv%C3%A9_Renard.jpg"
+  },
+  {
+    "name": "Aliou Cissé",
+    "country": "Senegal",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Aliou_Ciss%C3%A9_2018.jpg/330px-Aliou_Ciss%C3%A9_2018.jpg"
+  },
+  {
+    "name": "Rigobert Song",
+    "country": "Cameroon",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Rigobert_Song_2008.jpg/330px-Rigobert_Song_2008.jpg"
+  },
+  {
+    "name": "Hector Cuper",
+    "country": "Argentina",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/H%C3%A9ctor_C%C3%BAper.jpg/330px-H%C3%A9ctor_C%C3%BAper.jpg"
+  },
+  {
+    "name": "Reinaldo Rueda",
+    "country": "Colombia",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Argentina_-_Colombia_2022_%2879%29.jpg/330px-Argentina_-_Colombia_2022_%2879%29.jpg"
+  },
+  {
+    "name": "Jorge Sampaoli",
+    "country": "Argentina",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Jorge_Sampaoli_2018.jpg/330px-Jorge_Sampaoli_2018.jpg"
+  },
+  {
+    "name": "Gerardo Martino",
+    "country": "Argentina",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Gerardo_Martino.jpg/330px-Gerardo_Martino.jpg"
+  },
+  {
+    "name": "Marc Wilmots",
+    "country": "Belgium",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Marc_Wilmots_20190913_%28cropped%29.jpg/330px-Marc_Wilmots_20190913_%28cropped%29.jpg"
+  },
+  {
+    "name": "Roberto Martínez",
+    "country": "Spain",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/Roberto_Mart%C3%ADnez_2018.jpg/330px-Roberto_Mart%C3%ADnez_2018.jpg"
+  },
+  {
+    "name": "Bert van Marwijk",
+    "country": "Netherlands",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/20180601_FIFA_Friendly_Match_Czech_Republic_vs._Australia_Bert_van_Marwijk_850_0495.jpg/330px-20180601_FIFA_Friendly_Match_Czech_Republic_vs._Australia_Bert_van_Marwijk_850_0495.jpg"
+  },
+  {
+    "name": "Lionel Scaloni",
+    "country": "Argentina",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/7/7c/Lionel_Scaloni_-_2022.jpg"
+  }
+]

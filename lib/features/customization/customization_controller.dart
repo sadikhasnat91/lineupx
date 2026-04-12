@@ -8,13 +8,11 @@ class CustomizationController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    // Load from LineupController if passed via arguments
     final args = Get.arguments as Map<String, dynamic>?;
     if (args != null) {
-      final lineupCtrl = args['controller'];
-      if (lineupCtrl != null) {
-        settings.value = (lineupCtrl as dynamic).teamSettings.value
-            as TeamSettingsModel;
+      final passedSettings = args['teamSettings'];
+      if (passedSettings is TeamSettingsModel) {
+        settings.value = passedSettings.copyWith();
       }
     }
   }
@@ -25,6 +23,14 @@ class CustomizationController extends GetxController {
 
   void updateLogoPath(String? path) {
     settings.value = settings.value.copyWith(logoPath: path);
+  }
+
+  void updateCoachName(String name) {
+    settings.value = settings.value.copyWith(coachName: name);
+  }
+
+  void updateCoachImagePath(String? path) {
+    settings.value = settings.value.copyWith(coachImagePath: path);
   }
 
   void updatePrimaryColor(Color color) {
@@ -51,13 +57,18 @@ class CustomizationController extends GetxController {
     settings.value = settings.value.copyWith(width: width);
   }
 
+  void updateMatchType(MatchType matchType) {
+    settings.value = settings.value.copyWith(matchType: matchType);
+  }
+
   void saveAndReturn() {
     final args = Get.arguments as Map<String, dynamic>?;
     if (args != null) {
-      final lineupCtrl = args['controller'];
-      if (lineupCtrl != null) {
-        (lineupCtrl as dynamic)
-            .updateTeamSettings(settings.value);
+      final sourceCtrl = args['controller'];
+      if (sourceCtrl != null) {
+        try {
+          (sourceCtrl as dynamic).updateTeamSettings(settings.value);
+        } catch (_) {}
       }
     }
     Get.back();

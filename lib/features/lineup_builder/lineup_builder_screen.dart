@@ -9,8 +9,10 @@ import 'dart:typed_data';
 import '../../core/constants/app_colors.dart';
 import '../../core/utils/helpers.dart';
 import '../../data/models/player_model.dart';
+import '../../data/models/team_settings_model.dart';
 import '../../routes/app_routes.dart';
 import '../../widgets/gradient_app_bar.dart';
+import '../../widgets/smart_image.dart';
 import '../player_selection/player_selection_sheet.dart';
 import 'lineup_controller.dart';
 import 'widgets/pitch_painter.dart';
@@ -33,8 +35,13 @@ class LineupBuilderScreen extends StatelessWidget {
           IconButton(
             icon: const Icon(Icons.tune_rounded,
                 color: AppColors.textSecondary, size: 20),
-            onPressed: () => Get.toNamed(AppRoutes.teamCustomization,
-                arguments: {'controller': controller}),
+            onPressed: () => Get.toNamed(
+              AppRoutes.teamCustomization,
+              arguments: {
+                'controller': controller,
+                'teamSettings': controller.teamSettings.value,
+              },
+            ),
           ),
           // Export
           IconButton(
@@ -105,41 +112,149 @@ class _StatsBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: AppColors.bgDark,
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-      child: Obx(() => Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              _StatChip(
-                label:
-                    '${controller.filledCount}/${controller.lineup.formation.positions.length}',
-                sublabel: 'Players',
-                color: AppColors.accentGreen,
-              ),
-              _StatChip(
-                label: controller.avgRating > 0
-                    ? controller.avgRating.toStringAsFixed(1)
-                    : '–',
-                sublabel: 'Avg OVR',
-                color: AppHelpers.ratingColor(
-                    controller.avgRating.toInt()),
-              ),
-              _StatChip(
-                label: '${controller.chemistry}%',
-                sublabel: 'Chemistry',
-                color: controller.chemistry >= 80
-                    ? AppColors.success
-                    : AppColors.warning,
-              ),
-              Text(
-                controller.lineup.formation.name,
-                style: GoogleFonts.rajdhani(
-                  fontSize: 20,
-                  fontWeight: FontWeight.w800,
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+      child: Obx(() {
+        final settings = controller.teamSettings.value;
+        final showMeta = settings.coachName.trim().isNotEmpty ||
+            settings.matchType != MatchType.classic ||
+            (settings.logoPath?.isNotEmpty == true) ||
+            (settings.coachImagePath?.isNotEmpty == true);
+
+        return Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                _StatChip(
+                  label:
+                      '${controller.filledCount}/${controller.lineup.formation.positions.length}',
+                  sublabel: 'Players',
                   color: AppColors.accentGreen,
                 ),
+                _StatChip(
+                  label: controller.avgRating > 0
+                      ? controller.avgRating.toStringAsFixed(1)
+                      : '–',
+                  sublabel: 'Avg OVR',
+                  color: AppHelpers.ratingColor(controller.avgRating.toInt()),
+                ),
+                _StatChip(
+                  label: '${controller.chemistry}%',
+                  sublabel: 'Chemistry',
+                  color: controller.chemistry >= 80
+                      ? AppColors.success
+                      : AppColors.warning,
+                ),
+                Text(
+                  controller.lineup.formation.name,
+                  style: GoogleFonts.rajdhani(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w800,
+                    color: AppColors.accentGreen,
+                  ),
+                ),
+              ],
+            ),
+            if (showMeta) ...[
+              const SizedBox(height: 10),
+              Row(
+                children: [
+                  if (settings.logoPath?.isNotEmpty == true)
+                    Container(
+                      width: 28,
+                      height: 28,
+                      margin: const EdgeInsets.only(right: 8),
+                      decoration: BoxDecoration(
+                        color: AppColors.bgCard,
+                        borderRadius: BorderRadius.circular(8),
+                        border: Border.all(color: AppColors.border),
+                      ),
+                      clipBehavior: Clip.antiAlias,
+                      child: SmartImage(
+                        source: settings.logoPath,
+                        fit: BoxFit.cover,
+                        fallback: const Icon(Icons.shield_rounded,
+                            size: 16, color: AppColors.textSecondary),
+                      ),
+                    ),
+                  Expanded(
+                    child: Wrap(
+                      spacing: 8,
+                      runSpacing: 6,
+                      children: [
+                        _MetaChip(
+                          icon: Icons.emoji_events_outlined,
+                          label: settings.matchType.label,
+                        ),
+                        if (settings.coachName.trim().isNotEmpty)
+                          _MetaChip(
+                            icon: Icons.person_outline_rounded,
+                            label: settings.coachName,
+                            imageSource: settings.coachImagePath,
+                          ),
+                      ],
+                    ),
+                  ),
+                ],
               ),
             ],
-          )),
+          ],
+        );
+      }),
+    );
+  }
+}
+
+class _MetaChip extends StatelessWidget {
+  final IconData icon;
+  final String label;
+  final String? imageSource;
+
+  const _MetaChip({
+    required this.icon,
+    required this.label,
+    this.imageSource,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 5),
+      decoration: BoxDecoration(
+        color: AppColors.bgCard,
+        borderRadius: BorderRadius.circular(999),
+        border: Border.all(color: AppColors.border),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          if (imageSource?.isNotEmpty == true)
+            Container(
+              width: 16,
+              height: 16,
+              margin: const EdgeInsets.only(right: 5),
+              decoration: const BoxDecoration(shape: BoxShape.circle),
+              clipBehavior: Clip.antiAlias,
+              child: SmartImage(
+                source: imageSource,
+                fit: BoxFit.cover,
+                fallback: Icon(icon, size: 12, color: AppColors.textMuted),
+              ),
+            )
+          else
+            Icon(icon, size: 12, color: AppColors.textMuted),
+          const SizedBox(width: 5),
+          Text(
+            label,
+            style: const TextStyle(
+              fontSize: 11,
+              color: AppColors.textSecondary,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
@@ -409,6 +524,73 @@ class _PitchArea extends StatelessWidget {
     );
   }
 
+  void _editJerseyNumberDialog(
+    BuildContext context,
+    LineupController controller,
+    String positionId,
+    PlayerModel player,
+  ) {
+    final numberCtrl = TextEditingController(
+      text: player.number > 0 ? player.number.toString() : '',
+    );
+
+    showDialog(
+      context: context,
+      builder: (_) => AlertDialog(
+        backgroundColor: AppColors.bgCard,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+        title: Text(
+          'Edit Jersey Number',
+          style: GoogleFonts.rajdhani(
+            fontSize: 18,
+            fontWeight: FontWeight.w800,
+            color: AppColors.textPrimary,
+          ),
+        ),
+        content: TextField(
+          controller: numberCtrl,
+          keyboardType: TextInputType.number,
+          autofocus: true,
+          style: const TextStyle(color: AppColors.textPrimary),
+          decoration: InputDecoration(
+            hintText: 'Optional e.g. 7, 10, 99',
+            hintStyle: const TextStyle(color: AppColors.textMuted),
+            filled: true,
+            fillColor: AppColors.bgDark,
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10),
+              borderSide: const BorderSide(color: AppColors.border),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10),
+              borderSide: const BorderSide(color: AppColors.accentGreen),
+            ),
+          ),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text('Cancel',
+                style: TextStyle(color: AppColors.textMuted)),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              final raw = numberCtrl.text.trim();
+              final parsed = int.tryParse(raw) ?? 0;
+              controller.updatePlayerNumber(positionId, parsed);
+              Navigator.pop(context);
+            },
+            style: ElevatedButton.styleFrom(
+              backgroundColor: AppColors.accentGreen,
+              foregroundColor: Colors.black87,
+            ),
+            child: const Text('Save'),
+          ),
+        ],
+      ),
+    );
+  }
+
   void _showSlotOptions(
     BuildContext context,
     LineupController controller,
@@ -484,6 +666,15 @@ class _PitchArea extends StatelessWidget {
                 Navigator.pop(context);
                 _openPlayerSelection(context, controller, positionId,
                     player.primaryPosition);
+              },
+            ),
+            _OptionRow(
+              icon: Icons.numbers_rounded,
+              label: 'Edit Jersey Number',
+              color: AppColors.accentGreen,
+              onTap: () {
+                Navigator.pop(context);
+                _editJerseyNumberDialog(context, controller, positionId, player);
               },
             ),
             _OptionRow(

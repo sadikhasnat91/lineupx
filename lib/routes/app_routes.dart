@@ -12,4 +12,5 @@ abstract class AppRoutes {
   static const templates = '/templates';
   static const quickMatch = '/quick-match';
   static const versus = '/versus';
+  static const tacticalBoard = '/tactical-board';
 }

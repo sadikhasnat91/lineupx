@@ -9,6 +9,7 @@ import '../../routes/app_routes.dart';
 import '../../widgets/app_card.dart';
 import '../../widgets/formation_preview_widget.dart';
 import '../../widgets/gradient_app_bar.dart';
+import '../../widgets/smart_image.dart';
 import 'manager_controller.dart';
 
 class ManagerModeScreen extends StatelessWidget {
@@ -112,7 +113,7 @@ class _EmptyState extends StatelessWidget {
             ),
             const SizedBox(height: 28),
             ElevatedButton.icon(
-              onPressed: () => Get.toNamed(AppRoutes.lineupBuilder),
+              onPressed: () => Get.toNamed(AppRoutes.formationSelection),
               icon: const Icon(Icons.add_rounded),
               label: const Text('Build Lineup'),
               style: ElevatedButton.styleFrom(
@@ -180,14 +181,38 @@ class _ManagerHeader extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  settings.teamName,
-                  style: GoogleFonts.rajdhani(
-                    fontSize: 26,
-                    fontWeight: FontWeight.w800,
-                    color: Colors.white,
-                    letterSpacing: 0.5,
-                  ),
+                Row(
+                  children: [
+                    Container(
+                      width: 36,
+                      height: 36,
+                      margin: const EdgeInsets.only(right: 10),
+                      decoration: BoxDecoration(
+                        color: Colors.white24,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      clipBehavior: Clip.antiAlias,
+                      child: SmartImage(
+                        source: settings.logoPath,
+                        fit: BoxFit.cover,
+                        fallback: const Icon(Icons.shield_rounded,
+                            color: Colors.white, size: 18),
+                      ),
+                    ),
+                    Expanded(
+                      child: Text(
+                        settings.teamName,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: GoogleFonts.rajdhani(
+                          fontSize: 26,
+                          fontWeight: FontWeight.w800,
+                          color: Colors.white,
+                          letterSpacing: 0.5,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
                 const SizedBox(height: 2),
                 Text(
@@ -204,6 +229,26 @@ class _ManagerHeader extends StatelessWidget {
                       color: Colors.white54, fontSize: 12),
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
+                ),
+                const SizedBox(height: 8),
+                Wrap(
+                  spacing: 8,
+                  runSpacing: 6,
+                  children: [
+                    _HeaderPill(
+                      icon: Icons.emoji_events_outlined,
+                      label: settings.matchType.label,
+                    ),
+                    if (settings.coachName.trim().isNotEmpty ||
+                        settings.coachImagePath?.isNotEmpty == true)
+                      _HeaderPill(
+                        icon: Icons.person_outline_rounded,
+                        label: settings.coachName.trim().isEmpty
+                            ? 'Manager'
+                            : settings.coachName,
+                        imageSource: settings.coachImagePath,
+                      ),
+                  ],
                 ),
               ],
             ),
@@ -321,6 +366,59 @@ class _MiniStat extends StatelessWidget {
 
 // â”€â”€ Tactics card â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
+class _HeaderPill extends StatelessWidget {
+  final IconData icon;
+  final String label;
+  final String? imageSource;
+
+  const _HeaderPill({
+    required this.icon,
+    required this.label,
+    this.imageSource,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 5),
+      decoration: BoxDecoration(
+        color: Colors.white12,
+        borderRadius: BorderRadius.circular(999),
+        border: Border.all(color: Colors.white24),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          if (imageSource?.isNotEmpty == true)
+            Container(
+              width: 16,
+              height: 16,
+              margin: const EdgeInsets.only(right: 5),
+              decoration: const BoxDecoration(shape: BoxShape.circle),
+              clipBehavior: Clip.antiAlias,
+              child: SmartImage(
+                source: imageSource,
+                fit: BoxFit.cover,
+                fallback: Icon(icon, size: 12, color: Colors.white70),
+              ),
+            )
+          else
+            Icon(icon, size: 12, color: Colors.white70),
+          const SizedBox(width: 5),
+          Text(
+            label,
+            style: const TextStyle(
+              color: Colors.white,
+              fontSize: 11,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
 class _TacticsCard extends StatelessWidget {
   final ManagerController ctrl;
   const _TacticsCard({required this.ctrl});
@@ -340,7 +438,10 @@ class _TacticsCard extends StatelessWidget {
               icon: Icons.tune_rounded,
               onAction: () => Get.toNamed(
                 AppRoutes.teamCustomization,
-                arguments: {'teamSettings': s},
+                arguments: {
+                  'controller': ctrl,
+                  'teamSettings': s,
+                },
               ),
               actionLabel: 'Edit',
             ),
@@ -526,6 +627,11 @@ class _StartingElevenCard extends StatelessWidget {
               icon: Icons.format_list_numbered_rounded,
             ),
             const SizedBox(height: 12),
+            if (lineup.teamSettings.coachName.trim().isNotEmpty ||
+                lineup.teamSettings.coachImagePath?.isNotEmpty == true) ...[
+              _CoachRow(settings: lineup.teamSettings),
+              const Divider(color: AppColors.border, height: 18),
+            ],
             ...lineup.formation.positions.map((pos) {
               final player = lineup.playerSlots[pos.id];
               final isCaptain = player != null && player.id == lineup.captainId;
@@ -541,6 +647,73 @@ class _StartingElevenCard extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+}
+
+class _CoachRow extends StatelessWidget {
+  final TeamSettingsModel settings;
+
+  const _CoachRow({required this.settings});
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Container(
+          width: 36,
+          height: 36,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            color: AppColors.bgCardElevated,
+            border: Border.all(color: AppColors.border),
+          ),
+          clipBehavior: Clip.antiAlias,
+          child: SmartImage(
+            source: settings.coachImagePath,
+            fit: BoxFit.cover,
+            fallback: const Icon(Icons.person, color: AppColors.textSecondary),
+          ),
+        ),
+        const SizedBox(width: 10),
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                settings.coachName.trim().isEmpty ? 'Manager' : settings.coachName,
+                style: const TextStyle(
+                  color: AppColors.textPrimary,
+                  fontSize: 13,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+              const Text(
+                'Coach / Manager slot',
+                style: TextStyle(
+                  color: AppColors.textMuted,
+                  fontSize: 11,
+                ),
+              ),
+            ],
+          ),
+        ),
+        Container(
+          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+          decoration: BoxDecoration(
+            color: AppColors.accentBlue.withOpacity(0.12),
+            borderRadius: BorderRadius.circular(8),
+          ),
+          child: const Text(
+            'MGR',
+            style: TextStyle(
+              color: AppColors.accentBlue,
+              fontSize: 10,
+              fontWeight: FontWeight.w800,
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
@@ -612,7 +785,9 @@ class _SquadRow extends StatelessWidget {
                         ],
                       ),
                       Text(
-                        player!.club,
+                        player!.number > 0
+                            ? '#${player!.number} • ${player!.club}'
+                            : player!.club,
                         style: const TextStyle(
                             color: AppColors.textMuted, fontSize: 11),
                         overflow: TextOverflow.ellipsis,

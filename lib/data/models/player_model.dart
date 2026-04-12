@@ -7,6 +7,7 @@ class PlayerModel {
   final String club;
   final String country;
   final String imageUrl;
+  final String clubLogoUrl;
   final int number;
   final List<String> positions; // e.g. ['ST', 'CF', 'LW']
   final int rating;
@@ -32,6 +33,7 @@ class PlayerModel {
     required this.club,
     required this.country,
     required this.imageUrl,
+    this.clubLogoUrl = '',
     required this.number,
     required this.positions,
     required this.rating,
@@ -55,14 +57,14 @@ class PlayerModel {
   factory PlayerModel.fromAssetJson(Map<String, dynamic> j) {
     final int numericId = (j['id'] as num?)?.toInt() ?? 0;
     final String id = numericId.toString();
-    final int portraitIdx = numericId % 100;
     return PlayerModel(
       id: id,
       name: j['name'] as String? ?? '',
       club: j['club'] as String? ?? '',
       country: j['nationality'] as String? ?? '',
-      imageUrl: 'https://randomuser.me/api/portraits/men/$portraitIdx.jpg',
-      number: 0,
+      imageUrl: j['imageUrl'] as String? ?? '',
+      clubLogoUrl: j['clubLogoUrl'] as String? ?? '',
+      number: (j['number'] as num?)?.toInt() ?? 0,
       positions: [j['position'] as String? ?? 'ST'],
       rating: (j['overall'] as num?)?.toInt() ?? 70,
       age: (j['age'] as num?)?.toInt() ?? 0,
@@ -91,6 +93,7 @@ class PlayerModel {
       club: data['club'] as String? ?? '',
       country: data['country'] as String? ?? '',
       imageUrl: data['imageUrl'] as String? ?? '',
+      clubLogoUrl: data['clubLogoUrl'] as String? ?? '',
       number: (data['number'] as num?)?.toInt() ?? 0,
       positions: List<String>.from(data['positions'] as List? ?? []),
       rating: (data['rating'] as num?)?.toInt() ?? 70,
@@ -115,6 +118,7 @@ class PlayerModel {
         'club': club,
         'country': country,
         'imageUrl': imageUrl,
+        'clubLogoUrl': clubLogoUrl,
         'number': number,
         'positions': positions,
         'rating': rating,
@@ -135,14 +139,19 @@ class PlayerModel {
 
   // ── Custom (user-typed) player ───────────────────────────────────────────────
 
-  factory PlayerModel.custom({required String name, String position = 'CM'}) {
+  factory PlayerModel.custom({
+    required String name,
+    String position = 'CM',
+    int number = 0,
+  }) {
     return PlayerModel(
       id: 'custom_${name.replaceAll(' ', '_').toLowerCase()}_${DateTime.now().millisecondsSinceEpoch}',
       name: name,
       club: '',
       country: '',
       imageUrl: '',
-      number: 0,
+      clubLogoUrl: '',
+      number: number,
       positions: [position],
       rating: 75,
       age: 0,
@@ -158,6 +167,7 @@ class PlayerModel {
         club: json['club'] as String? ?? '',
         country: json['country'] as String? ?? '',
         imageUrl: json['imageUrl'] as String? ?? '',
+        clubLogoUrl: json['clubLogoUrl'] as String? ?? '',
         number: (json['number'] as num?)?.toInt() ?? 0,
         positions: List<String>.from(json['positions'] as List? ?? []),
         rating: (json['rating'] as num?)?.toInt() ?? 70,
@@ -182,6 +192,7 @@ class PlayerModel {
         'club': club,
         'country': country,
         'imageUrl': imageUrl,
+        'clubLogoUrl': clubLogoUrl,
         'number': number,
         'positions': positions,
         'rating': rating,
@@ -206,6 +217,7 @@ class PlayerModel {
     String? club,
     String? country,
     String? imageUrl,
+    String? clubLogoUrl,
     int? number,
     List<String>? positions,
     int? rating,
@@ -229,6 +241,7 @@ class PlayerModel {
         club: club ?? this.club,
         country: country ?? this.country,
         imageUrl: imageUrl ?? this.imageUrl,
+        clubLogoUrl: clubLogoUrl ?? this.clubLogoUrl,
         number: number ?? this.number,
         positions: positions ?? this.positions,
         rating: rating ?? this.rating,

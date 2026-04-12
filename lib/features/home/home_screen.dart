@@ -106,6 +106,18 @@ class HomeScreen extends StatelessWidget {
                   iconColor: Colors.white,
                   onTap: () => Get.toNamed(AppRoutes.versus),
                 ),
+                _ActionCard(
+                  icon: Icons.schema_rounded,
+                  label: 'Tactical\nBoard',
+                  sublabel: 'Plan your tactics',
+                  gradient: const LinearGradient(
+                    colors: [Color(0xFF26A69A), Color(0xFF00796B)],
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                  ),
+                  iconColor: Colors.white,
+                  onTap: controller.openTacticalBoard,
+                ),
               ],
             ),
           ),

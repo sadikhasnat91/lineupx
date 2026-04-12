@@ -5,6 +5,7 @@ import '../../core/constants/formation_data.dart';
 import '../../core/utils/helpers.dart';
 import '../../data/models/formation_model.dart';
 import '../../data/models/player_model.dart';
+import '../../data/models/team_settings_model.dart';
 import '../../features/lineup_builder/widgets/jersey_painter.dart';
 import '../../features/lineup_builder/widgets/pitch_painter.dart';
 import '../../widgets/gradient_app_bar.dart';
@@ -21,7 +22,10 @@ class VersusScreen extends StatefulWidget {
 class _VersusScreenState extends State<VersusScreen> {
   final _team1Name = TextEditingController(text: 'Team A');
   final _team2Name = TextEditingController(text: 'Team B');
+  final _team1Coach = TextEditingController();
+  final _team2Coach = TextEditingController();
 
+  MatchType _matchType = MatchType.classic;
   FormationModel _team1Formation = FormationData.f433;
   FormationModel _team2Formation = FormationData.f442;
 
@@ -59,6 +63,8 @@ class _VersusScreenState extends State<VersusScreen> {
   void dispose() {
     _team1Name.dispose();
     _team2Name.dispose();
+    _team1Coach.dispose();
+    _team2Coach.dispose();
     super.dispose();
   }
 
@@ -68,7 +74,36 @@ class _VersusScreenState extends State<VersusScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.bgDeep,
-      appBar: GradientAppBar(title: '11 vs 11'),
+      appBar: GradientAppBar(
+        title: '11 vs 11 · ${_matchType.label}',
+        actions: [
+          PopupMenuButton<MatchType>(
+            tooltip: 'Match type',
+            color: AppColors.bgCard,
+            icon: const Icon(Icons.emoji_events_outlined,
+                color: AppColors.textSecondary),
+            onSelected: (value) => setState(() => _matchType = value),
+            itemBuilder: (_) => MatchType.values
+                .map(
+                  (type) => PopupMenuItem<MatchType>(
+                    value: type,
+                    child: Text(
+                      type.label,
+                      style: TextStyle(
+                        color: type == _matchType
+                            ? AppColors.accentGreen
+                            : AppColors.textPrimary,
+                        fontWeight: type == _matchType
+                            ? FontWeight.w700
+                            : FontWeight.w500,
+                      ),
+                    ),
+                  ),
+                )
+                .toList(),
+          ),
+        ],
+      ),
       body: Column(
         children: [
           _buildTeamBar(isTeam1: true),
@@ -84,6 +119,7 @@ class _VersusScreenState extends State<VersusScreen> {
 
   Widget _buildTeamBar({required bool isTeam1}) {
     final ctrl = isTeam1 ? _team1Name : _team2Name;
+    final coachCtrl = isTeam1 ? _team1Coach : _team2Coach;
     final formation = isTeam1 ? _team1Formation : _team2Formation;
     final color = isTeam1 ? AppColors.accentGreen : AppColors.accentBlue;
     final slots = isTeam1 ? _team1Slots : _team2Slots;
@@ -92,41 +128,73 @@ class _VersusScreenState extends State<VersusScreen> {
     return Container(
       color: AppColors.bgDark,
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
-      child: Row(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
         children: [
-          Icon(Icons.shield_rounded, size: 16, color: color),
-          const SizedBox(width: 6),
-          Expanded(
-            child: TextField(
-              controller: ctrl,
-              style: GoogleFonts.rajdhani(
-                fontSize: 14,
-                fontWeight: FontWeight.w700,
-                color: color,
+          Row(
+            children: [
+              Icon(Icons.shield_rounded, size: 16, color: color),
+              const SizedBox(width: 6),
+              Expanded(
+                child: TextField(
+                  controller: ctrl,
+                  style: GoogleFonts.rajdhani(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w700,
+                    color: color,
+                  ),
+                  onChanged: (_) => setState(() {}),
+                  decoration: InputDecoration(
+                    hintText: 'Team name…',
+                    hintStyle: TextStyle(color: color.withOpacity(0.4)),
+                    isDense: true,
+                    border: InputBorder.none,
+                    contentPadding: EdgeInsets.zero,
+                  ),
+                ),
               ),
-              onChanged: (_) => setState(() {}),
-              decoration: InputDecoration(
-                hintText: 'Team name…',
-                hintStyle: TextStyle(color: color.withOpacity(0.4)),
-                isDense: true,
-                border: InputBorder.none,
-                contentPadding: EdgeInsets.zero,
+              _formationPicker(isTeam1, formation, color),
+              const SizedBox(width: 8),
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 2),
+                decoration: BoxDecoration(
+                  color: color.withOpacity(0.12),
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: Text(
+                  '$filled/11',
+                  style: TextStyle(
+                      fontSize: 10, fontWeight: FontWeight.w800, color: color),
+                ),
               ),
-            ),
+            ],
           ),
-          _formationPicker(isTeam1, formation, color),
-          const SizedBox(width: 8),
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 2),
-            decoration: BoxDecoration(
-              color: color.withOpacity(0.12),
-              borderRadius: BorderRadius.circular(8),
-            ),
-            child: Text(
-              '$filled/11',
-              style: TextStyle(
-                  fontSize: 10, fontWeight: FontWeight.w800, color: color),
-            ),
+          // Coach name row
+          Row(
+            children: [
+              Icon(Icons.person_outline_rounded, size: 12,
+                  color: color.withOpacity(0.5)),
+              const SizedBox(width: 4),
+              Expanded(
+                child: TextField(
+                  controller: coachCtrl,
+                  style: TextStyle(
+                    fontSize: 10,
+                    fontWeight: FontWeight.w500,
+                    color: color.withOpacity(0.7),
+                  ),
+                  onChanged: (_) => setState(() {}),
+                  decoration: InputDecoration(
+                    hintText: 'Coach name…',
+                    hintStyle: TextStyle(
+                        color: color.withOpacity(0.25), fontSize: 10),
+                    isDense: true,
+                    border: InputBorder.none,
+                    contentPadding: EdgeInsets.zero,
+                  ),
+                ),
+              ),
+            ],
           ),
         ],
       ),

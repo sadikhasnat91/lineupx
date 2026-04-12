@@ -33,4 +33,8 @@ class HomeController extends GetxController {
     // Quick-start: go directly to formation selection
     Get.toNamed(AppRoutes.formationSelection);
   }
+
+  void openTacticalBoard() {
+    Get.toNamed(AppRoutes.tacticalBoard);
+  }
 }

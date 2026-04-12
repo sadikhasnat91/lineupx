@@ -63,13 +63,15 @@ class PitchPainter extends CustomPainter {
     // Top penalty spot
     canvas.drawCircle(Offset(w / 2, padY + h * 0.125), 2, spotPaint);
 
-    // Top penalty arc
-    final arcRect = Rect.fromCenter(
+    // Top penalty arc (clipped to only show portion outside the box)
+    final topArcRect = Rect.fromCenter(
         center: Offset(w / 2, padY + h * 0.125),
         width: w * 0.28,
         height: w * 0.28);
-    canvas.drawArc(
-        arcRect, 0.35, 2.44, false, line);
+    canvas.save();
+    canvas.clipRect(Rect.fromLTWH(0, padY + h * 0.18, w, h));
+    canvas.drawArc(topArcRect, 0.35, 2.44, false, line);
+    canvas.restore();
 
     // ── Bottom penalty box ─────────────────────────────────────────────────
     canvas.drawRect(
@@ -86,6 +88,16 @@ class PitchPainter extends CustomPainter {
     // Bottom penalty spot
     canvas.drawCircle(
         Offset(w / 2, h - padY - h * 0.125), 2, spotPaint);
+
+    // Bottom penalty arc (clipped to only show portion outside the box)
+    final botArcRect = Rect.fromCenter(
+        center: Offset(w / 2, h - padY - h * 0.125),
+        width: w * 0.28,
+        height: w * 0.28);
+    canvas.save();
+    canvas.clipRect(Rect.fromLTWH(0, 0, w, h - padY - h * 0.18));
+    canvas.drawArc(botArcRect, 3.49, 2.44, false, line);
+    canvas.restore();
 
     // ── Corner arcs ───────────────────────────────────────────────────────
     final cornerR = w * 0.04;

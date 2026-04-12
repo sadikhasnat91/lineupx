@@ -59,17 +59,33 @@ class PlayerCardWidget extends StatelessWidget {
                     const SizedBox(height: 3),
                     Row(
                       children: [
-                        Text(
-                          player.club,
-                          style: const TextStyle(
-                            color: AppColors.textSecondary,
-                            fontSize: 11,
+                        if (player.clubLogoUrl.isNotEmpty) ...[
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(2),
+                            child: Image.network(
+                              player.clubLogoUrl,
+                              width: 14,
+                              height: 14,
+                              fit: BoxFit.contain,
+                              errorBuilder: (_, __, ___) =>
+                                  const SizedBox.shrink(),
+                            ),
                           ),
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
+                          const SizedBox(width: 4),
+                        ],
+                        Flexible(
+                          child: Text(
+                            player.club,
+                            style: const TextStyle(
+                              color: AppColors.textSecondary,
+                              fontSize: 11,
+                            ),
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
                         ),
                         const Text(
-                          ' Â· ',
+                          ' · ',
                           style: TextStyle(
                             color: AppColors.textMuted,
                             fontSize: 11,
@@ -145,7 +161,7 @@ class PlayerCardWidget extends StatelessWidget {
                   ),
                   const SizedBox(height: 4),
                   Text(
-                    '#${player.number}',
+                    player.number > 0 ? '#${player.number}' : 'Optional #',
                     style: const TextStyle(
                       color: AppColors.textMuted,
                       fontSize: 10,

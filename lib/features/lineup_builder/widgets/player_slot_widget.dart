@@ -123,7 +123,7 @@ class PlayerSlotWidget extends StatelessWidget {
             ),
           ),
           Positioned(
-            top: _h * 0.28,
+            top: _h * 0.22,
             child: Text(
               '${player!.rating}',
               style: TextStyle(
@@ -136,6 +136,18 @@ class PlayerSlotWidget extends StatelessWidget {
               ),
             ),
           ),
+          if (player!.number > 0)
+            Positioned(
+              top: _h * 0.56,
+              child: Text(
+                '#${player!.number}',
+                style: const TextStyle(
+                  fontSize: 8,
+                  fontWeight: FontWeight.w800,
+                  color: Colors.white,
+                ),
+              ),
+            ),
         ],
       ),
     );

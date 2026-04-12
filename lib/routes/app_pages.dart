@@ -15,6 +15,7 @@ import '../features/manager_mode/manager_mode_screen.dart';
 import '../features/manager_mode/manager_controller.dart';
 import '../features/quick_match/quick_match_screen.dart';
 import '../features/versus/versus_screen.dart';
+import '../features/tactical_board/tactical_board_screen.dart';
 import 'app_routes.dart';
 
 class AppPages {
@@ -76,6 +77,10 @@ class AppPages {
     GetPage(
       name: AppRoutes.versus,
       page: () => const VersusScreen(),
+    ),
+    GetPage(
+      name: AppRoutes.tacticalBoard,
+      page: () => const TacticalBoardScreen(),
     ),
   ];
 }

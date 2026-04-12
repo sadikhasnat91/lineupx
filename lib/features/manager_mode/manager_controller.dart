@@ -114,6 +114,16 @@ class ManagerController extends GetxController {
 
   Future<void> refresh() => _loadMostRecentLineup();
 
+  Future<void> updateTeamSettings(TeamSettingsModel settings) async {
+    final lineup = activeLineup.value;
+    if (lineup == null) return;
+
+    lineup.teamSettings = settings;
+    lineup.updatedAt = DateTime.now();
+    await _lineupRepo.save(lineup);
+    activeLineup.value = lineup.deepCopy();
+  }
+
   /// Switch active lineup from saved lineup id
   Future<void> switchLineup(String id) async {
     final l = await _lineupRepo.getById(id);
