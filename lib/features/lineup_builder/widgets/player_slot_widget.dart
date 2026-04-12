@@ -2,9 +2,10 @@
 import '../../../core/constants/app_colors.dart';
 import '../../../core/utils/helpers.dart';
 import '../../../data/models/player_model.dart';
+import 'jersey_painter.dart';
 
 /// A single player slot widget on the pitch.
-/// Shows an empty "tap to fill" state or the assigned player.
+/// Shows an empty "tap to fill" state or the assigned player — jersey shaped.
 class PlayerSlotWidget extends StatelessWidget {
   final String positionId;
   final String positionLabel;
@@ -25,7 +26,8 @@ class PlayerSlotWidget extends StatelessWidget {
     this.onLongPress,
   });
 
-  static const double _size = 58.0;
+  static const double _w = 54.0;
+  static const double _h = 60.0;
 
   @override
   Widget build(BuildContext context) {
@@ -33,35 +35,30 @@ class PlayerSlotWidget extends StatelessWidget {
       onTap: onTap,
       onLongPress: onLongPress,
       child: SizedBox(
-        width: _size,
+        width: _w + 8,
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             Stack(
               clipBehavior: Clip.none,
+              alignment: Alignment.topCenter,
               children: [
-                // Avatar / empty
-                _buildAvatar(),
-
-                // Captain badge
+                _buildJersey(),
                 if (isCaptain)
                   const Positioned(
-                    top: -5,
-                    right: -5,
+                    top: -4,
+                    right: 0,
                     child: _CaptainBadge(label: 'C', color: AppColors.captainGold),
                   ),
-
                 if (isViceCaptain)
                   const Positioned(
-                    top: -5,
-                    right: -5,
-                    child: _CaptainBadge(
-                        label: 'V', color: AppColors.viceCaptainSilver),
+                    top: -4,
+                    right: 0,
+                    child: _CaptainBadge(label: 'V', color: AppColors.viceCaptainSilver),
                   ),
               ],
             ),
-            const SizedBox(height: 4),
-            // Name label
+            const SizedBox(height: 3),
             _buildLabel(),
           ],
         ),
@@ -69,42 +66,39 @@ class PlayerSlotWidget extends StatelessWidget {
     );
   }
 
-  Widget _buildAvatar() {
+  Widget _buildJersey() {
     final posColor = AppHelpers.positionColor(positionLabel);
 
     if (player == null) {
-      // Empty slot
-      return Container(
-        width: _size,
-        height: _size,
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          color: AppColors.bgDark.withOpacity(0.85),
-          border: Border.all(
-            color: posColor.withOpacity(0.5),
-            width: 1.5,
-            style: BorderStyle.solid,
-          ),
-          boxShadow: [
-            BoxShadow(
-              color: posColor.withOpacity(0.15),
-              blurRadius: 8,
-              spreadRadius: 1,
-            ),
-          ],
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+      return SizedBox(
+        width: _w,
+        height: _h,
+        child: Stack(
+          alignment: Alignment.center,
           children: [
-            Icon(Icons.add_rounded, size: 16, color: posColor.withOpacity(0.8)),
-            const SizedBox(height: 1),
-            Text(
-              positionLabel,
-              style: TextStyle(
-                fontSize: 9,
-                fontWeight: FontWeight.w800,
-                color: posColor,
-                letterSpacing: 0.3,
+            CustomPaint(
+              size: Size(_w, _h),
+              painter: JerseyPainter(
+                fillColor: AppColors.bgDark,
+                borderColor: posColor,
+                isEmpty: true,
+              ),
+            ),
+            Positioned(
+              top: _h * 0.28,
+              child: Column(
+                children: [
+                  Icon(Icons.add_rounded, size: 13, color: posColor.withOpacity(0.8)),
+                  Text(
+                    positionLabel,
+                    style: TextStyle(
+                      fontSize: 8,
+                      fontWeight: FontWeight.w800,
+                      color: posColor,
+                      letterSpacing: 0.3,
+                    ),
+                  ),
+                ],
               ),
             ),
           ],
@@ -112,63 +106,36 @@ class PlayerSlotWidget extends StatelessWidget {
       );
     }
 
-    // Filled slot
-    return Container(
-      width: _size,
-      height: _size,
-      decoration: BoxDecoration(
-        shape: BoxShape.circle,
-        color: AppHelpers.avatarBgColor(player!.rating),
-        border: Border.all(
-          color: AppHelpers.ratingColor(player!.rating).withOpacity(0.6),
-          width: 1.8,
-        ),
-        boxShadow: [
-          BoxShadow(
-            color: AppHelpers.ratingColor(player!.rating).withOpacity(0.25),
-            blurRadius: 10,
-            spreadRadius: 1,
-          ),
-        ],
-      ),
-      child: ClipOval(
-        child: player!.imageUrl.isNotEmpty
-            ? Image.network(
-                player!.imageUrl,
-                fit: BoxFit.cover,
-                errorBuilder: (_, __, ___) => _initialsWidget(),
-                loadingBuilder: (_, child, progress) =>
-                    progress == null ? child : _initialsWidget(),
-              )
-            : _initialsWidget(),
-      ),
-    );
-  }
+    final ratingColor = AppHelpers.ratingColor(player!.rating);
+    final jerseyFill = AppHelpers.avatarBgColor(player!.rating);
 
-  Widget _initialsWidget() {
-    return Container(
-      color: AppHelpers.avatarBgColor(player?.rating ?? 70),
-      alignment: Alignment.center,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+    return SizedBox(
+      width: _w,
+      height: _h,
+      child: Stack(
+        alignment: Alignment.center,
         children: [
-          Text(
-            AppHelpers.initials(player?.name ?? positionLabel),
-            style: TextStyle(
-              fontSize: 14,
-              fontWeight: FontWeight.w800,
-              color: AppHelpers.ratingColor(player?.rating ?? 70),
+          CustomPaint(
+            size: Size(_w, _h),
+            painter: JerseyPainter(
+              fillColor: jerseyFill,
+              borderColor: ratingColor,
             ),
           ),
-          if (player != null)
-            Text(
-              player!.rating.toString(),
+          Positioned(
+            top: _h * 0.28,
+            child: Text(
+              '${player!.rating}',
               style: TextStyle(
-                fontSize: 9,
-                fontWeight: FontWeight.w700,
-                color: AppHelpers.ratingColor(player!.rating).withOpacity(0.7),
+                fontSize: 17,
+                fontWeight: FontWeight.w900,
+                color: ratingColor,
+                shadows: [
+                  Shadow(color: Colors.black.withOpacity(0.6), blurRadius: 4),
+                ],
               ),
             ),
+          ),
         ],
       ),
     );
@@ -178,24 +145,24 @@ class PlayerSlotWidget extends StatelessWidget {
     if (player == null) return const SizedBox.shrink();
 
     return Container(
-      constraints: const BoxConstraints(maxWidth: 64),
-      padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+      constraints: const BoxConstraints(maxWidth: 72),
+      padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 2),
       decoration: BoxDecoration(
-        color: AppColors.bgDark.withOpacity(0.85),
-        borderRadius: BorderRadius.circular(6),
+        color: AppColors.bgDark.withOpacity(0.88),
+        borderRadius: BorderRadius.circular(5),
         border: Border.all(color: AppColors.border.withOpacity(0.5)),
       ),
       child: Text(
-        AppHelpers.shortName(player!.name),
+        player!.name,
         style: const TextStyle(
-          fontSize: 9,
+          fontSize: 8,
           fontWeight: FontWeight.w700,
           color: AppColors.textPrimary,
-          letterSpacing: 0.2,
+          letterSpacing: 0.15,
         ),
         textAlign: TextAlign.center,
         overflow: TextOverflow.ellipsis,
-        maxLines: 1,
+        maxLines: 2,
       ),
     );
   }
@@ -204,26 +171,23 @@ class PlayerSlotWidget extends StatelessWidget {
 class _CaptainBadge extends StatelessWidget {
   final String label;
   final Color color;
-
   const _CaptainBadge({required this.label, required this.color});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 18,
-      height: 18,
+      width: 16,
+      height: 16,
       decoration: BoxDecoration(
         color: color,
         shape: BoxShape.circle,
-        boxShadow: [
-          BoxShadow(color: color.withOpacity(0.4), blurRadius: 4),
-        ],
+        boxShadow: [BoxShadow(color: color.withOpacity(0.4), blurRadius: 4)],
       ),
       alignment: Alignment.center,
       child: Text(
         label,
         style: const TextStyle(
-          fontSize: 9,
+          fontSize: 8,
           fontWeight: FontWeight.w900,
           color: Colors.black87,
         ),

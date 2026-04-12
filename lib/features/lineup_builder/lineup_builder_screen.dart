@@ -243,14 +243,168 @@ class _PitchArea extends StatelessWidget {
   ) {
     showModalBottomSheet(
       context: context,
-      isScrollControlled: true,
-      backgroundColor: Colors.transparent,
-      builder: (_) => PlayerSelectionSheet(
-        positionLabel: positionLabel,
-        onPlayerSelected: (player) {
-          controller.assignPlayer(positionId, player);
-          Navigator.pop(context);
-        },
+      backgroundColor: AppColors.bgCard,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+      ),
+      builder: (_) => Padding(
+        padding: const EdgeInsets.fromLTRB(20, 16, 20, 28),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Container(
+              width: 36, height: 4,
+              decoration: BoxDecoration(
+                color: AppColors.border,
+                borderRadius: BorderRadius.circular(2),
+              ),
+            ),
+            const SizedBox(height: 16),
+            Text(
+              'Add Player',
+              style: GoogleFonts.rajdhani(
+                fontSize: 20, fontWeight: FontWeight.w800,
+                color: AppColors.textPrimary,
+              ),
+            ),
+            const SizedBox(height: 4),
+            Text(
+              positionLabel,
+              style: TextStyle(
+                fontSize: 12,
+                color: AppHelpers.positionColor(positionLabel),
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+            const SizedBox(height: 20),
+            // Browse database
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton.icon(
+                onPressed: () {
+                  Navigator.pop(context);
+                  showModalBottomSheet(
+                    context: context,
+                    isScrollControlled: true,
+                    backgroundColor: Colors.transparent,
+                    builder: (_) => PlayerSelectionSheet(
+                      positionLabel: positionLabel,
+                      onPlayerSelected: (player) {
+                        controller.assignPlayer(positionId, player);
+                        Navigator.pop(context);
+                      },
+                    ),
+                  );
+                },
+                icon: const Icon(Icons.search_rounded, size: 18),
+                label: const Text('Browse Players Database'),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: AppColors.accentGreen,
+                  foregroundColor: Colors.black87,
+                  padding: const EdgeInsets.symmetric(vertical: 14),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12)),
+                ),
+              ),
+            ),
+            const SizedBox(height: 10),
+            // Type custom name
+            SizedBox(
+              width: double.infinity,
+              child: OutlinedButton.icon(
+                onPressed: () {
+                  Navigator.pop(context);
+                  _typeCustomName(context, controller, positionId, positionLabel);
+                },
+                icon: const Icon(Icons.edit_rounded, size: 18),
+                label: const Text('Type Player Name'),
+                style: OutlinedButton.styleFrom(
+                  foregroundColor: AppColors.accentBlue,
+                  side: const BorderSide(color: AppColors.accentBlue),
+                  padding: const EdgeInsets.symmetric(vertical: 14),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12)),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  void _typeCustomName(
+    BuildContext context,
+    LineupController controller,
+    String positionId,
+    String positionLabel,
+  ) {
+    final nameCtrl = TextEditingController();
+    showDialog(
+      context: context,
+      builder: (_) => AlertDialog(
+        backgroundColor: AppColors.bgCard,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+        title: Text(
+          'Enter Player Name',
+          style: GoogleFonts.rajdhani(
+            fontSize: 18, fontWeight: FontWeight.w800,
+            color: AppColors.textPrimary,
+          ),
+        ),
+        content: TextField(
+          controller: nameCtrl,
+          autofocus: true,
+          style: const TextStyle(color: AppColors.textPrimary),
+          decoration: InputDecoration(
+            hintText: 'e.g. Sadik, Ashfaq...',
+            hintStyle: const TextStyle(color: AppColors.textMuted),
+            filled: true,
+            fillColor: AppColors.bgDark,
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10),
+              borderSide: const BorderSide(color: AppColors.border),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10),
+              borderSide: const BorderSide(color: AppColors.accentGreen),
+            ),
+          ),
+          onSubmitted: (v) {
+            if (v.trim().isNotEmpty) {
+              Navigator.pop(context);
+              controller.assignPlayer(
+                positionId,
+                PlayerModel.custom(name: v.trim(), position: positionLabel),
+              );
+            }
+          },
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text('Cancel',
+                style: TextStyle(color: AppColors.textMuted)),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              final name = nameCtrl.text.trim();
+              if (name.isEmpty) return;
+              Navigator.pop(context);
+              controller.assignPlayer(
+                positionId,
+                PlayerModel.custom(name: name, position: positionLabel),
+              );
+            },
+            style: ElevatedButton.styleFrom(
+              backgroundColor: AppColors.accentGreen,
+              foregroundColor: Colors.black87,
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8)),
+            ),
+            child: const Text('Add'),
+          ),
+        ],
       ),
     );
   }
@@ -499,27 +653,36 @@ class _BenchPlayerChip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final color = AppHelpers.ratingColor(player.rating);
     return Container(
-      width: 50,
-      height: 50,
-      margin: const EdgeInsets.symmetric(horizontal: 4),
+      margin: const EdgeInsets.symmetric(horizontal: 4, vertical: 2),
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
       decoration: BoxDecoration(
-        shape: BoxShape.circle,
+        borderRadius: BorderRadius.circular(20),
         color: AppHelpers.avatarBgColor(player.rating),
-        border: Border.all(
-          color:
-              AppHelpers.ratingColor(player.rating).withOpacity(0.5),
-          width: 1.5,
-        ),
+        border: Border.all(color: color.withOpacity(0.5), width: 1.5),
       ),
-      alignment: Alignment.center,
-      child: Text(
-        AppHelpers.initials(player.name),
-        style: TextStyle(
-          fontSize: 12,
-          fontWeight: FontWeight.w800,
-          color: AppHelpers.ratingColor(player.rating),
-        ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(
+            '${player.rating}',
+            style: TextStyle(
+              fontSize: 11,
+              fontWeight: FontWeight.w900,
+              color: color,
+            ),
+          ),
+          const SizedBox(width: 6),
+          Text(
+            player.name,
+            style: const TextStyle(
+              fontSize: 12,
+              fontWeight: FontWeight.w600,
+              color: AppColors.textPrimary,
+            ),
+          ),
+        ],
       ),
     );
   }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../core/constants/app_colors.dart';
+import '../../routes/app_routes.dart';
 import 'home_controller.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -80,6 +81,30 @@ class HomeScreen extends StatelessWidget {
                   ),
                   iconColor: Colors.white,
                   onTap: controller.openTemplates,
+                ),
+                _ActionCard(
+                  icon: Icons.sports_soccer_rounded,
+                  label: 'Quick\nMatch',
+                  sublabel: 'Custom player count',
+                  gradient: const LinearGradient(
+                    colors: [Color(0xFF00BCD4), Color(0xFF0097A7)],
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                  ),
+                  iconColor: Colors.white,
+                  onTap: () => Get.toNamed(AppRoutes.quickMatch),
+                ),
+                _ActionCard(
+                  icon: Icons.compare_arrows_rounded,
+                  label: '11 vs 11',
+                  sublabel: 'Set up two teams',
+                  gradient: const LinearGradient(
+                    colors: [Color(0xFFFF5252), Color(0xFFFF1744)],
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                  ),
+                  iconColor: Colors.white,
+                  onTap: () => Get.toNamed(AppRoutes.versus),
                 ),
               ],
             ),
@@ -257,11 +282,12 @@ class _HeroHeader extends StatelessWidget {
 class _FeatureStrip extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    const items = [
-      ('⚽', 'Formations'),
-      ('🧩', 'Custom XI'),
-      ('📊', 'Tactics'),
-      ('💾', 'Save & Share'),
+    final controller = Get.find<HomeController>();
+    final items = [
+      ('⚽', 'Formations', () => controller.createNewLineup()),
+      ('🧩', 'Custom XI', () => Get.toNamed(AppRoutes.quickMatch)),
+      ('📊', 'Tactics', () => controller.openManagerMode()),
+      ('💾', 'Save & Share', () => controller.openSavedLineups()),
     ];
 
     return Padding(
@@ -283,28 +309,31 @@ class _FeatureStrip extends StatelessWidget {
             children: items
                 .map(
                   (item) => Expanded(
-                    child: Container(
-                      margin: const EdgeInsets.symmetric(horizontal: 4),
-                      padding: const EdgeInsets.symmetric(vertical: 12),
-                      decoration: BoxDecoration(
-                        color: AppColors.bgCard,
-                        borderRadius: BorderRadius.circular(12),
-                        border: Border.all(color: AppColors.border),
-                      ),
-                      child: Column(
-                        children: [
-                          Text(item.$1, style: const TextStyle(fontSize: 20)),
-                          const SizedBox(height: 4),
-                          Text(
-                            item.$2,
-                            style: const TextStyle(
-                              fontSize: 10,
-                              color: AppColors.textSecondary,
-                              fontWeight: FontWeight.w600,
+                    child: GestureDetector(
+                      onTap: item.$3,
+                      child: Container(
+                        margin: const EdgeInsets.symmetric(horizontal: 4),
+                        padding: const EdgeInsets.symmetric(vertical: 12),
+                        decoration: BoxDecoration(
+                          color: AppColors.bgCard,
+                          borderRadius: BorderRadius.circular(12),
+                          border: Border.all(color: AppColors.border),
+                        ),
+                        child: Column(
+                          children: [
+                            Text(item.$1, style: const TextStyle(fontSize: 20)),
+                            const SizedBox(height: 4),
+                            Text(
+                              item.$2,
+                              style: const TextStyle(
+                                fontSize: 10,
+                                color: AppColors.textSecondary,
+                                fontWeight: FontWeight.w600,
+                              ),
+                              textAlign: TextAlign.center,
                             ),
-                            textAlign: TextAlign.center,
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                   ),
@@ -338,47 +367,53 @@ class _ActionCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        decoration: BoxDecoration(
-          color: AppColors.bgCard,
-          borderRadius: BorderRadius.circular(18),
-          border: Border.all(color: AppColors.border),
-        ),
-        padding: const EdgeInsets.all(18),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // Icon bubble
-            Container(
-              width: 44,
-              height: 44,
-              decoration: BoxDecoration(
-                gradient: gradient,
-                borderRadius: BorderRadius.circular(12),
+    return Material(
+      color: AppColors.bgCard,
+      borderRadius: BorderRadius.circular(18),
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(18),
+        splashColor: Colors.white12,
+        highlightColor: Colors.white10,
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(18),
+            border: Border.all(color: AppColors.border),
+          ),
+          padding: const EdgeInsets.all(18),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // Icon bubble
+              Container(
+                width: 44,
+                height: 44,
+                decoration: BoxDecoration(
+                  gradient: gradient,
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Icon(icon, size: 22, color: iconColor),
               ),
-              child: Icon(icon, size: 22, color: iconColor),
-            ),
-            const Spacer(),
-            Text(
-              label,
-              style: GoogleFonts.rajdhani(
-                fontSize: 18,
-                fontWeight: FontWeight.w700,
-                color: AppColors.textPrimary,
-                height: 1.2,
+              const Spacer(),
+              Text(
+                label,
+                style: GoogleFonts.rajdhani(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w700,
+                  color: AppColors.textPrimary,
+                  height: 1.2,
+                ),
               ),
-            ),
-            const SizedBox(height: 2),
-            Text(
-              sublabel,
-              style: const TextStyle(
-                fontSize: 11,
-                color: AppColors.textMuted,
+              const SizedBox(height: 2),
+              Text(
+                sublabel,
+                style: const TextStyle(
+                  fontSize: 11,
+                  color: AppColors.textMuted,
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

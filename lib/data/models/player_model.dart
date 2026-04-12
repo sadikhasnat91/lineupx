@@ -133,6 +133,23 @@ class PlayerModel {
         'weight': weight,
       };
 
+  // ── Custom (user-typed) player ───────────────────────────────────────────────
+
+  factory PlayerModel.custom({required String name, String position = 'CM'}) {
+    return PlayerModel(
+      id: 'custom_${name.replaceAll(' ', '_').toLowerCase()}_${DateTime.now().millisecondsSinceEpoch}',
+      name: name,
+      club: '',
+      country: '',
+      imageUrl: '',
+      number: 0,
+      positions: [position],
+      rating: 75,
+      age: 0,
+      preferredFoot: 'Right',
+    );
+  }
+
   // ── JSON (Hive caching) ──────────────────────────────────────────────────────
 
   factory PlayerModel.fromJson(Map<String, dynamic> json) => PlayerModel(

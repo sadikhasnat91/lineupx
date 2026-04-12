@@ -13,6 +13,8 @@ import '../features/customization/team_customization_screen.dart';
 import '../features/customization/customization_controller.dart';
 import '../features/manager_mode/manager_mode_screen.dart';
 import '../features/manager_mode/manager_controller.dart';
+import '../features/quick_match/quick_match_screen.dart';
+import '../features/versus/versus_screen.dart';
 import 'app_routes.dart';
 
 class AppPages {
@@ -66,6 +68,14 @@ class AppPages {
       binding: BindingsBuilder(() {
         Get.lazyPut<ManagerController>(() => ManagerController());
       }),
+    ),
+    GetPage(
+      name: AppRoutes.quickMatch,
+      page: () => const QuickMatchScreen(),
+    ),
+    GetPage(
+      name: AppRoutes.versus,
+      page: () => const VersusScreen(),
     ),
   ];
 }

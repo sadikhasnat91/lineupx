@@ -10,4 +10,6 @@ abstract class AppRoutes {
   static const teamCustomization = '/team-customization';
   static const managerMode = '/manager-mode';
   static const templates = '/templates';
+  static const quickMatch = '/quick-match';
+  static const versus = '/versus';
 }
