@@ -118,18 +118,10 @@ class _SplashScreenState extends State<SplashScreen>
                       child: Transform.scale(
                         scale: _logoScale.value * _pulse.value,
                         child: Container(
-                          width: 110,
-                          height: 110,
+                          width: 140,
+                          height: 140,
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
-                            gradient: const LinearGradient(
-                              colors: [
-                                Color(0xFF00E676),
-                                Color(0xFF00BCD4),
-                              ],
-                              begin: Alignment.topLeft,
-                              end: Alignment.bottomRight,
-                            ),
                             boxShadow: [
                               BoxShadow(
                                 color: AppColors.accentGreen.withOpacity(0.4),
@@ -138,10 +130,11 @@ class _SplashScreenState extends State<SplashScreen>
                               ),
                             ],
                           ),
-                          child: const Icon(
-                            Icons.sports_soccer_rounded,
-                            size: 52,
-                            color: Colors.black87,
+                          child: ClipOval(
+                            child: Image.asset(
+                              'assets/images/logo.png',
+                              fit: BoxFit.cover,
+                            ),
                           ),
                         ),
                       ),
